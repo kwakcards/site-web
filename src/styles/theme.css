@@ -1,0 +1,45 @@
+/*
+ * Identité visuelle Kwak & Cards : couleurs, effets et formes.
+ *
+ * C'est la source unique de l'identité, avec :
+ *   - src/styles/fonts.ts    (typographies)
+ *   - src/config/brand.ts    (nom, textes, chemins du logo)
+ *   - public/brand/          (fichiers du logo)
+ *
+ * Les composants n'utilisent jamais de couleur en dur. Ils passent par les
+ * tokens shadcn (bg-primary, text-muted-foreground…) branchés sur ces variables
+ * dans globals.css, ou par les utilitaires de marque (text-brand, shadow-glow…).
+ */
+:root {
+  /* Palette relevée sur le logo */
+  --brand-black: #0a0a0b; /* fond noir profond */
+  --brand-ink: #131315; /* surfaces : cartes, header */
+  --brand-ink-raised: #1b1b1e; /* surfaces surélevées : menus, champs */
+  --brand-line: #2b2a2e; /* bordures */
+  --brand-yellow: #f8c028; /* jaune doré : accent principal */
+  --brand-yellow-light: #ffd65a; /* reflets, survols */
+  --brand-yellow-deep: #f0a818; /* dégradés, état pressé */
+  --brand-cream: #f2ebe1; /* blanc cassé : texte principal */
+  --brand-muted: #a8a299; /* texte secondaire */
+  --brand-danger: #ff5c50;
+  --brand-success: #3ecf8e;
+
+  /* Effets */
+  --brand-gradient: linear-gradient(
+    180deg,
+    var(--brand-yellow-light) 0%,
+    var(--brand-yellow) 45%,
+    var(--brand-yellow-deep) 100%
+  );
+  --brand-glow: 0 0 0 1px var(--brand-yellow), 0 12px 40px -14px rgb(248 192 40 / 0.6);
+
+  /* Forme */
+  --brand-radius: 0.75rem;
+
+  /* Typographies : variables posées par next/font (voir src/styles/fonts.ts) */
+  --brand-font-body: var(--nf-body), ui-sans-serif, system-ui, sans-serif;
+  --brand-font-heading: var(--nf-heading), "Arial Black", ui-sans-serif, sans-serif;
+  --brand-font-display: var(--nf-display), var(--brand-font-heading);
+
+  color-scheme: dark;
+}

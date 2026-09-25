@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../styles/theme.css";
+
+/* Le site est entièrement sombre : <html class="dark"> active les variantes
+   dark: des composants shadcn. */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--brand-font-body);
+  --font-heading: var(--brand-font-heading);
+  --font-display: var(--brand-font-display);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Utilitaires de marque : text-brand, bg-brand-deep, text-cream… */
+  --color-brand: var(--brand-yellow);
+  --color-brand-light: var(--brand-yellow-light);
+  --color-brand-deep: var(--brand-yellow-deep);
+  --color-cream: var(--brand-cream);
+
+  --shadow-glow: var(--brand-glow);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@theme {
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Branchement des tokens shadcn sur l'identité (src/styles/theme.css). */
+:root {
+  --background: var(--brand-black);
+  --foreground: var(--brand-cream);
+  --card: var(--brand-ink);
+  --card-foreground: var(--brand-cream);
+  --popover: var(--brand-ink-raised);
+  --popover-foreground: var(--brand-cream);
+  --primary: var(--brand-yellow);
+  --primary-foreground: var(--brand-black);
+  --secondary: var(--brand-ink-raised);
+  --secondary-foreground: var(--brand-cream);
+  --muted: var(--brand-ink-raised);
+  --muted-foreground: var(--brand-muted);
+  --accent: color-mix(in oklab, var(--brand-yellow) 10%, var(--brand-ink));
+  --accent-foreground: var(--brand-cream);
+  --destructive: var(--brand-danger);
+  --success: var(--brand-success);
+  --border: var(--brand-line);
+  --input: var(--brand-line);
+  --ring: var(--brand-yellow);
+  --chart-1: var(--brand-yellow);
+  --chart-2: var(--brand-yellow-deep);
+  --chart-3: var(--brand-cream);
+  --chart-4: var(--brand-muted);
+  --chart-5: var(--brand-line);
+  --radius: var(--brand-radius);
+  --sidebar: var(--brand-ink);
+  --sidebar-foreground: var(--brand-cream);
+  --sidebar-primary: var(--brand-yellow);
+  --sidebar-primary-foreground: var(--brand-black);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--brand-cream);
+  --sidebar-border: var(--brand-line);
+  --sidebar-ring: var(--brand-yellow);
+}
+
+@utility text-brand-gradient {
+  background-image: var(--brand-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
