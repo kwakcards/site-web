@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next"
 
+import { JsonLd } from "@/components/seo/json-ld"
 import { Toaster } from "@/components/ui/sonner"
 import { brand } from "@/config/brand"
 import { getSiteUrl } from "@/lib/env"
+import { storeStructuredData } from "@/lib/structured-data"
 import { cn } from "@/lib/utils"
 import { fontVariables } from "@/styles/fonts"
 
@@ -35,8 +37,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={cn("dark", fontVariables)}>
       <body className="flex min-h-dvh flex-col">
+        <a
+          href="#contenu"
+          className="sr-only rounded-lg bg-primary px-4 py-3 font-heading text-sm text-primary-foreground uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:outline-2 focus:outline-offset-2 focus:outline-cream"
+        >
+          Aller au contenu
+        </a>
         {children}
         <Toaster position="top-center" />
+        <JsonLd data={storeStructuredData()} />
       </body>
     </html>
   )

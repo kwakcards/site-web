@@ -18,3 +18,20 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Variables d'environnement lues via `src/lib/env.ts` (public) ; documentées dans `.env.example`.
 - Autorisation revérifiée dans chaque Server Action (ne jamais se reposer uniquement sur `proxy.ts`).
 - Avant de commiter : `npm run check` puis `npm run build`.
+
+## Conformité légale et accessibilité (à respecter à chaque évolution)
+
+- Voir `docs/legal/conformite.md`, `docs/legal/donnees-personnelles.md` et `docs/accessibilite.md`.
+- Informations légales centralisées dans `src/config/legal.ts` : ne jamais les écrire en dur ailleurs.
+- Aucun traceur non indispensable (mesure d'audience, pixel, contenu intégré, police chargée depuis
+  un CDN) sans bannière de consentement conforme CNIL ; toute clé de stockage va dans
+  `src/config/storage.ts` et dans la page `/cookies`.
+- Toute nouvelle donnée personnelle : justifier sa nécessité, puis mettre à jour l'inventaire, le
+  registre et `/confidentialite`. Pas de civilité ni de date de naissance ; le téléphone reste facultatif.
+- Libellés légaux exacts : « Commander avec obligation de paiement » (L221-14), « Renoncer au
+  contrat ici » et « Confirmer la rétractation » (D221-5). L'encadré des garanties légales
+  (`LegalGuaranteeBox`) ne se reformule jamais.
+- Prix barré = prix le plus bas pratiqué sur les 30 jours précédant la réduction (L112-1-1).
+- Accessibilité WCAG 2.2 AA : texte alternatif sur toute image, libellés de formulaires, focus
+  visible, pas d'animation sans moyen de la mettre en pause, contrastes testés
+  (`src/styles/theme-contrast.test.ts`).

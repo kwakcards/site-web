@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "../styles/theme.css";
+@plugin "@tailwindcss/typography";
 
 /* Le site est entièrement sombre : <html class="dark"> active les variantes
    dark: des composants shadcn. */
@@ -94,7 +95,7 @@
   --destructive: var(--brand-danger);
   --success: var(--brand-success);
   --border: var(--brand-line);
-  --input: var(--brand-line);
+  --input: var(--brand-control);
   --ring: var(--brand-yellow);
   --chart-1: var(--brand-yellow);
   --chart-2: var(--brand-yellow-deep);
@@ -110,6 +111,24 @@
   --sidebar-accent-foreground: var(--brand-cream);
   --sidebar-border: var(--brand-line);
   --sidebar-ring: var(--brand-yellow);
+}
+
+/* Textes longs (pages légales, FAQ) : typographie lisible et liens soulignés. */
+@utility prose-kwak {
+  --tw-prose-body: var(--brand-cream);
+  --tw-prose-headings: var(--brand-cream);
+  --tw-prose-lead: var(--brand-muted);
+  --tw-prose-links: var(--brand-yellow);
+  --tw-prose-bold: var(--brand-cream);
+  --tw-prose-counters: var(--brand-muted);
+  --tw-prose-bullets: var(--brand-yellow);
+  --tw-prose-hr: var(--brand-line);
+  --tw-prose-quotes: var(--brand-cream);
+  --tw-prose-quote-borders: var(--brand-yellow);
+  --tw-prose-captions: var(--brand-muted);
+  --tw-prose-code: var(--brand-cream);
+  --tw-prose-th-borders: var(--brand-control);
+  --tw-prose-td-borders: var(--brand-line);
 }
 
 @utility text-brand-gradient {

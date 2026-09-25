@@ -15,7 +15,9 @@
   --brand-black: #0a0a0b; /* fond noir profond */
   --brand-ink: #131315; /* surfaces : cartes, header */
   --brand-ink-raised: #1b1b1e; /* surfaces surélevées : menus, champs */
-  --brand-line: #2b2a2e; /* bordures */
+  --brand-line: #2b2a2e; /* bordures décoratives (séparateurs, cartes) */
+  /* Contour des champs de formulaire : contraste ≥ 3:1 avec les fonds (WCAG 1.4.11) */
+  --brand-control: #77726a;
   --brand-yellow: #f8c028; /* jaune doré : accent principal */
   --brand-yellow-light: #ffd65a; /* reflets, survols */
   --brand-yellow-deep: #f0a818; /* dégradés, état pressé */

@@ -34,7 +34,7 @@ async function CurrentYear() {
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border bg-card">
+    <footer className="mt-auto border-t border-border bg-card print:hidden">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 md:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div className="flex flex-col items-start gap-4">
           <Logo className="h-20" sizes="80px" />

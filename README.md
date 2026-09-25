@@ -69,6 +69,19 @@ toucher aux composants :
 Les composants utilisent uniquement les tokens (`bg-primary`, `text-muted-foreground`,
 `font-display`, `shadow-glow`…), jamais de couleurs en dur.
 
+## Conformité légale et accessibilité
+
+- [`docs/legal/conformite.md`](docs/legal/conformite.md) : obligations vérifiées, ce qui est en
+  place, et **ce que Kwak doit faire avant l'ouverture** (informations légales, médiateur…).
+- [`docs/legal/donnees-personnelles.md`](docs/legal/donnees-personnelles.md) : inventaire des
+  données collectées, avec la justification de chaque champ.
+- [`docs/legal/registre-des-traitements.md`](docs/legal/registre-des-traitements.md) : registre
+  RGPD (article 30).
+- [`docs/accessibilite.md`](docs/accessibilite.md) : WCAG 2.2 AA, contrastes, agents IA.
+- Les informations légales de la boutique se complètent dans un seul fichier :
+  [`src/config/legal.ts`](src/config/legal.ts). Tant qu'il manque une information obligatoire,
+  un avertissement s'affiche en tête des pages légales.
+
 ## Structure
 
 ```

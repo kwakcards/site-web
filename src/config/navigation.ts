@@ -20,22 +20,24 @@ export const mainNav: NavLink[] = [
 export const helpNav: NavLink[] = [
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
-  { label: "Livraison et retours", href: "/politique-de-remboursement" },
+  { label: "Livraison, retours et remboursements", href: "/politique-de-remboursement" },
 ]
 
 export const legalNav: NavLink[] = [
   { label: "Mentions légales", href: "/mentions-legales" },
   { label: "Conditions générales de vente", href: "/cgv" },
-  { label: "Politique de remboursement", href: "/politique-de-remboursement" },
+  { label: "Conditions d'utilisation", href: "/conditions-utilisation" },
   { label: "Politique de confidentialité", href: "/confidentialite" },
-  { label: "Formulaire de rétractation", href: "/retractation" },
+  { label: "Politique cookies", href: "/cookies" },
+  { label: "Droit de rétractation", href: "/retractation" },
 ]
 
 /**
- * Fonction de rétractation en ligne (art. L221-21 C. conso) : lien libellé sans
- * ambiguïté, visible en permanence. Libellé à faire valider juridiquement.
+ * Fonction de rétractation en ligne (art. L221-21 et D221-5 du code de la
+ * consommation) : le libellé « renoncer au contrat ici » est celui prévu par
+ * le décret n° 2026-3. Lien visible en permanence dans le footer.
  */
 export const withdrawalLink: NavLink = {
-  label: "Se rétracter du contrat ici",
-  href: "/retractation",
+  label: "Renoncer au contrat ici",
+  href: "/retractation#renoncer",
 }
