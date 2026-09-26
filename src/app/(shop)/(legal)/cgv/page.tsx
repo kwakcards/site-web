@@ -383,9 +383,10 @@ export default function TermsOfSalePage() {
           content: (
             <p>
               Pour toute commande d&apos;un montant égal ou supérieur à 120 euros, le vendeur
-              conserve l&apos;écrit constatant le contrat pendant dix ans et en garantit
-              l&apos;accès au Client à tout moment, sur simple demande (articles L. 213-1 et D.
-              213-1 du code de la consommation).
+              conserve l&apos;écrit constatant le contrat jusqu&apos;à la livraison, puis pendant
+              dix ans à compter de celle-ci, et en garantit l&apos;accès au Client à tout moment,
+              sur simple demande (articles L. 213-1, D. 213-1 et D. 213-2 du code de la
+              consommation).
             </p>
           ),
         },

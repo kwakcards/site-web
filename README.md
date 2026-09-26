@@ -72,7 +72,7 @@ Les composants utilisent uniquement les tokens (`bg-primary`, `text-muted-foregr
 ## Conformité légale et accessibilité
 
 - [`docs/legal/conformite.md`](docs/legal/conformite.md) : obligations vérifiées, ce qui est en
-  place, et **ce que Kwak doit faire avant l'ouverture** (informations légales, médiateur…).
+  place, et **ce que Gil, le propriétaire, doit faire avant l'ouverture** (informations légales, médiateur…).
 - [`docs/legal/donnees-personnelles.md`](docs/legal/donnees-personnelles.md) : inventaire des
   données collectées, avec la justification de chaque champ.
 - [`docs/legal/registre-des-traitements.md`](docs/legal/registre-des-traitements.md) : registre
@@ -112,6 +112,6 @@ src/
 
 ## Passation
 
-Tous les comptes appartiennent à Kwak. Cette section sera complétée au fil des
+Tous les comptes (Supabase, Vercel, Resend, GitHub, domaine) appartiennent à l'entreprise de Gil, le propriétaire. Cette section sera complétée au fil des
 phases (création d'un admin, migrations de base, déploiement, révocation des
 accès temporaires).

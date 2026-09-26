@@ -6,7 +6,7 @@ Modèle simplifié inspiré du [registre CNIL](https://www.cnil.fr/fr/RGPD-le-re
 **Responsable du traitement** : [À COMPLÉTER : nom ou dénomination sociale], Kwak & Cards,
 [adresse], [email]. Pas de délégué à la protection des données (non obligatoire).
 
-**Sous-traitants communs** (accord de traitement des données à accepter depuis les comptes de Kwak) :
+**Sous-traitants communs** (accord de traitement des données à accepter depuis les comptes de l'entreprise) :
 
 - Vercel Inc. : hébergement du site (États-Unis ; DPF + clauses contractuelles types) ;
 - Supabase Pte. Ltd. : base de données, stockage, authentification (données hébergées dans l'UE, à Stockholm) ;

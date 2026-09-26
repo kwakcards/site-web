@@ -1,5 +1,5 @@
 /**
- * Informations légales de la boutique : À COMPLÉTER PAR KWAK AVANT L'OUVERTURE.
+ * Informations légales de la boutique : À COMPLÉTER PAR GIL (PROPRIÉTAIRE) AVANT L'OUVERTURE.
  *
  * Toutes les pages légales (mentions légales, CGV, confidentialité…) lisent ce
  * fichier. Une valeur `null` est affichée « [À compléter] » et listée dans

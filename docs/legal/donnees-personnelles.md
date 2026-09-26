@@ -60,8 +60,8 @@ et dans la politique de confidentialité (`/confidentialite`).
 
 ## Où sont stockées les données
 
-| Donnée                                                                                 | Service                   | Localisation                                   |
-| -------------------------------------------------------------------------------------- | ------------------------- | ---------------------------------------------- |
-| Base de données (commandes, rétractations, newsletter), images, authentification admin | Supabase (compte de Kwak) | UE, Stockholm (Suède)                          |
-| Site et journaux techniques                                                            | Vercel (compte de Kwak)   | États-Unis, DPF + clauses contractuelles types |
-| Emails transactionnels                                                                 | Resend (compte de Kwak)   | États-Unis, DPF + clauses contractuelles types |
+| Donnée                                                                                 | Service                           | Localisation                                   |
+| -------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------- |
+| Base de données (commandes, rétractations, newsletter), images, authentification admin | Supabase (compte de l'entreprise) | UE, Stockholm (Suède)                          |
+| Site et journaux techniques                                                            | Vercel (compte de l'entreprise)   | États-Unis, DPF + clauses contractuelles types |
+| Emails transactionnels                                                                 | Resend (compte de l'entreprise)   | États-Unis, DPF + clauses contractuelles types |

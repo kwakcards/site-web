@@ -3,7 +3,7 @@ import { formatPrice } from "@/lib/money"
 /**
  * Valeurs par défaut de la boutique. En phase 5, elles deviennent éditables
  * dans l'admin (tables site_settings et payment_settings) : ces valeurs ne
- * serviront alors plus que de repli. Montants et délais à confirmer par Kwak.
+ * serviront alors plus que de repli. Montants et délais à confirmer par Gil (propriétaire).
  */
 const shipping = {
   /** Forfait de livraison suivie (centimes). */
