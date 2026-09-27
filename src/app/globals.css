@@ -51,6 +51,8 @@
   --color-brand-light: var(--brand-yellow-light);
   --color-brand-deep: var(--brand-yellow-deep);
   --color-cream: var(--brand-cream);
+  --color-edge: var(--brand-edge);
+  --color-destructive-deep: var(--brand-danger-deep);
 
   --shadow-glow: var(--brand-glow);
 
@@ -129,6 +131,52 @@
   --tw-prose-code: var(--brand-cream);
   --tw-prose-th-borders: var(--brand-control);
   --tw-prose-td-borders: var(--brand-line);
+}
+
+/*
+ * Relief des éléments interactifs (boutons, liens-boutons, puces, cartes
+ * cliquables, champs) : bordure épaisse et bord inférieur plein, repris du
+ * bouton d'appel à l'action. Il se combine avec l'anneau de focus (ring).
+ *   tactile          s'enfonce au clic (boutons, liens, puces, cartes)
+ *   tactile-field    même relief, sans enfoncement (champs, cases, interrupteurs)
+ *   ledge-{couleur}  couleur du bord inférieur : ledge-brand-deep, hover:ledge-brand-deep…
+ *   [--ledge-depth:3px] relief plus fin pour les petits éléments
+ */
+@utility tactile {
+  --tw-shadow: 0 var(--ledge-depth, var(--brand-ledge-depth)) 0 0 var(--ledge, var(--brand-edge));
+  box-shadow:
+    var(--tw-inset-shadow, 0 0 #0000), var(--tw-inset-ring-shadow, 0 0 #0000),
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  transition-property: translate, box-shadow, color, background-color, border-color, opacity;
+  transition-timing-function: ease-out;
+  transition-duration: 90ms;
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    translate: 0 var(--ledge-depth, var(--brand-ledge-depth));
+    --tw-shadow: 0 0 0 0 transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0s;
+  }
+}
+
+@utility tactile-field {
+  --tw-shadow: 0 3px 0 0 var(--ledge, var(--brand-edge));
+  box-shadow:
+    var(--tw-inset-shadow, 0 0 #0000), var(--tw-inset-ring-shadow, 0 0 #0000),
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  transition-property: box-shadow, color, background-color, border-color;
+  transition-timing-function: ease-out;
+  transition-duration: 90ms;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0s;
+  }
+}
+
+@utility ledge-* {
+  --ledge: --value(--color-*);
 }
 
 @utility text-brand-gradient {

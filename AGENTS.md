@@ -13,7 +13,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Interface et contenus en français ; code (noms de variables, fonctions) en anglais.
 - Identité centralisée : couleurs dans `src/styles/theme.css`, typos dans `src/styles/fonts.ts`,
   nom et logo dans `src/config/brand.ts`. Pas de couleur en dur dans les composants : utiliser
-  les tokens (`bg-primary`, `text-muted-foreground`, `font-display`, `shadow-glow`…).
+  les tokens (`bg-primary`, `text-muted-foreground`, `font-display`, `tactile`…).
+- Éléments interactifs (boutons, liens-boutons, puces, cartes cliquables, champs) : même relief que
+  le bouton « Rechercher une carte », via le composant `Button` ou les utilitaires `tactile` /
+  `tactile-field` / `ledge-*` (`src/app/globals.css`). Pas de lueur (glow) ni de style shadcn par
+  défaut : c'est ce qui donne un rendu générique. Les liens dans un texte restent soulignés.
 - Montants toujours en centimes (entiers) ; formatage via `formatPrice` (`src/lib/money.ts`).
 - Variables d'environnement lues via `src/lib/env.ts` (public) ; documentées dans `.env.example`.
 - Autorisation revérifiée dans chaque Server Action (ne jamais se reposer uniquement sur `proxy.ts`).

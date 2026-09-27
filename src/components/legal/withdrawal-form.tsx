@@ -232,7 +232,7 @@ export function WithdrawalForm({ contactEmail }: { contactEmail: string | null }
           <Button type="submit" size="lg">
             Vérifier ma demande
           </Button>
-          <Button type="button" variant="ghost" size="lg" onClick={() => setStep("start")}>
+          <Button type="button" variant="outline" size="lg" onClick={() => setStep("start")}>
             Annuler
           </Button>
         </div>

@@ -18,7 +18,7 @@ export function ProductGallery({ images, name }: ProductGalleryProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative aspect-[63/88] overflow-hidden rounded-2xl border border-border bg-[radial-gradient(ellipse_at_top,var(--brand-ink-raised),var(--brand-ink)_70%)]">
+      <div className="relative aspect-[63/88] overflow-hidden rounded-2xl border-2 border-edge bg-[radial-gradient(ellipse_at_top,var(--brand-ink-raised),var(--brand-ink)_70%)]">
         {image ? (
           <Image
             key={image.url}
@@ -40,7 +40,7 @@ export function ProductGallery({ images, name }: ProductGalleryProps) {
       </div>
 
       {images.length > 1 && (
-        <ul className="grid grid-cols-5 gap-2" aria-label="Photos du produit">
+        <ul className="grid grid-cols-5 gap-2.5 pb-1" aria-label="Photos du produit">
           {images.map((item, index) => (
             <li key={item.url}>
               <button
@@ -49,10 +49,10 @@ export function ProductGallery({ images, name }: ProductGalleryProps) {
                 aria-pressed={index === current}
                 aria-label={`Afficher la photo ${index + 1} sur ${images.length}`}
                 className={cn(
-                  "relative block aspect-[63/88] w-full overflow-hidden rounded-lg border bg-card transition-colors",
+                  "relative block aspect-[63/88] w-full tactile overflow-hidden rounded-lg border-2 bg-card outline-none [--ledge-depth:3px] focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/50",
                   index === current
-                    ? "border-primary shadow-glow"
-                    : "border-border hover:border-primary/60"
+                    ? "border-primary ledge-brand-deep"
+                    : "border-edge hover:border-primary hover:ledge-brand-deep"
                 )}
               >
                 <Image src={item.url} alt="" fill sizes="96px" className="object-contain p-1" />

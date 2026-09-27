@@ -9,6 +9,7 @@ import { type EditableImage, ImageUploader } from "@/components/admin/image-uplo
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { NativeCheckbox } from "@/components/ui/native-checkbox"
 import { NativeSelect } from "@/components/ui/native-select"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -233,13 +234,11 @@ export function ProductForm({
       <fieldset className={sectionClass}>
         <legend className={cn(legendClass, "float-left")}>État et gradation</legend>
         <div className="clear-both flex items-center gap-3">
-          <input
+          <NativeCheckbox
             id="isGraded"
             name="isGraded"
-            type="checkbox"
             checked={isGraded}
             onChange={(event) => setIsGraded(event.target.checked)}
-            className="size-5 accent-primary"
           />
           <Label htmlFor="isGraded">Carte gradée (sous boîtier, avec une note)</Label>
         </div>
@@ -395,12 +394,10 @@ export function ProductForm({
       <fieldset className={sectionClass}>
         <legend className={cn(legendClass, "float-left")}>Publication</legend>
         <div className="clear-both flex items-center gap-3">
-          <input
+          <NativeCheckbox
             id="isVisible"
             name="isVisible"
-            type="checkbox"
             defaultChecked={initialValues.isVisible}
-            className="size-5 accent-primary"
           />
           <Label htmlFor="isVisible">Visible sur la boutique</Label>
         </div>
@@ -440,11 +437,11 @@ export function ProductForm({
               ? "Créer le produit"
               : "Enregistrer les modifications"}
         </Button>
-        <Button asChild variant="ghost" size="lg">
+        <Button asChild variant="outline" size="lg">
           <Link href="/admin/produits">Retour à la liste</Link>
         </Button>
         {mode === "edit" && initialValues.isVisible && (
-          <Button asChild variant="link" className="ml-auto">
+          <Button asChild variant="outline" className="ml-auto">
             <Link href={`/produit/${initialValues.slug}`} target="_blank">
               Voir la fiche en ligne
               <ExternalLinkIcon data-icon="inline-end" />

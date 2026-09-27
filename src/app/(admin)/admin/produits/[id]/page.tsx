@@ -61,7 +61,7 @@ export default async function EditProductPage({
             {notice}
           </p>
           {query.cree === "1" && (
-            <Button asChild variant="link" size="sm" className="ml-auto">
+            <Button asChild variant="cta-outline" size="sm" className="ml-auto">
               <Link href="/admin/produits/nouveau">
                 <PlusIcon data-icon="inline-start" />
                 Ajouter un autre produit

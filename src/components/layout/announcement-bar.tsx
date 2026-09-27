@@ -70,7 +70,7 @@ export function AnnouncementBar({ messages, className }: AnnouncementBarProps) {
       <button
         type="button"
         onClick={() => setPaused((value) => !value)}
-        className="mx-1 grid size-8 shrink-0 place-items-center rounded-md transition-colors hover:bg-primary-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-primary-foreground motion-reduce:hidden"
+        className="mx-1.5 my-1 grid size-7 shrink-0 tactile place-items-center rounded-md border-2 border-primary-foreground bg-primary [--ledge-depth:2px] ledge-primary-foreground hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-foreground motion-reduce:hidden"
       >
         {paused ? <PlayIcon className="size-4" /> : <PauseIcon className="size-4" />}
         <span className="sr-only">

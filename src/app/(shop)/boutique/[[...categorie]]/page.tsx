@@ -12,6 +12,7 @@ import { CategoryChips } from "@/components/catalog/category-chips"
 import { Pagination } from "@/components/catalog/pagination"
 import { Breadcrumbs } from "@/components/layout/breadcrumbs"
 import { ProductGrid } from "@/components/product/product-grid"
+import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { cardConditions, conditionLabel, languageLabel } from "@/config/catalog"
 import { catalogHref, parseCatalogParams } from "@/lib/catalog-params"
@@ -154,7 +155,7 @@ async function Catalog({ params, searchParams }: Pick<Props, "params" | "searchP
         {result.products.length > 0 ? (
           <ProductGrid products={result.products} />
         ) : (
-          <div className="rounded-xl border border-dashed border-border px-6 py-12 text-center">
+          <div className="rounded-xl border-2 border-dashed border-edge px-6 py-12 text-center">
             <p className="font-heading uppercase">
               {result.total > 0 ? "Cette page est vide." : "Aucun article ne correspond."}
             </p>
@@ -163,16 +164,17 @@ async function Catalog({ params, searchParams }: Pick<Props, "params" | "searchP
                 ? "Les résultats tiennent sur moins de pages."
                 : "Essaie d'autres mots-clés ou retire un filtre."}
             </p>
-            <Link
-              href={result.total > 0 ? catalogHref(basePath, { ...query, page: 1 }) : basePath}
-              className="mt-4 inline-block text-primary underline underline-offset-4"
-            >
-              {result.total > 0
-                ? "Revenir à la première page"
-                : category
-                  ? `Voir toute la catégorie ${category.name}`
-                  : "Voir tout le catalogue"}
-            </Link>
+            <Button asChild variant="outline" className="mt-5">
+              <Link
+                href={result.total > 0 ? catalogHref(basePath, { ...query, page: 1 }) : basePath}
+              >
+                {result.total > 0
+                  ? "Revenir à la première page"
+                  : category
+                    ? `Voir toute la catégorie ${category.name}`
+                    : "Voir tout le catalogue"}
+              </Link>
+            </Button>
           </div>
         )}
 

@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { Logo } from "@/components/brand/logo"
 import { Splash } from "@/components/brand/splash"
+import { Button } from "@/components/ui/button"
 import { brand } from "@/config/brand"
 import { helpNav, legalNav, mainNav, type NavLink, withdrawalLink } from "@/config/navigation"
 
@@ -50,12 +51,9 @@ export function Footer() {
           <p className="flex items-center gap-2">
             <Splash className="size-4" />© <CurrentYear /> {brand.name}. Tous droits réservés.
           </p>
-          <Link
-            href={withdrawalLink.href}
-            className="font-semibold text-primary underline-offset-4 hover:underline"
-          >
-            {withdrawalLink.label}
-          </Link>
+          <Button asChild variant="cta-outline" size="sm" className="self-start md:self-auto">
+            <Link href={withdrawalLink.href}>{withdrawalLink.label}</Link>
+          </Button>
         </div>
       </div>
     </footer>

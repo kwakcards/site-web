@@ -116,10 +116,13 @@ export default function FaqPage() {
 
       {/* <details> natif : réponses présentes dans le HTML (lecteurs d'écran, moteurs,
           agents IA) et utilisables au clavier, même sans JavaScript. */}
-      <div className="mt-10 divide-y divide-border rounded-xl border border-border bg-card">
+      <div className="mt-10 flex flex-col gap-4">
         {faq.map((item) => (
-          <details key={item.question} className="group px-5">
-            <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-4 text-base font-semibold marker:content-none focus-visible:rounded-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+          <details
+            key={item.question}
+            className="group rounded-xl border-2 border-edge bg-card px-5 tactile-field open:border-primary open:ledge-brand-deep hover:border-primary hover:ledge-brand-deep has-[summary:focus-visible]:border-primary has-[summary:focus-visible]:ring-3 has-[summary:focus-visible]:ring-ring/50"
+          >
+            <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-4 text-base font-semibold outline-none marker:content-none [&::-webkit-details-marker]:hidden">
               {item.question}
               <ChevronDownIcon className="mt-1 size-5 shrink-0 text-primary transition-transform group-open:rotate-180 motion-reduce:transition-none" />
             </summary>

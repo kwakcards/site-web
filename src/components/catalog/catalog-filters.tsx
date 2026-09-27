@@ -7,6 +7,7 @@ import { useId, useState, useTransition } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { NativeCheckbox } from "@/components/ui/native-checkbox"
 import { NativeSelect } from "@/components/ui/native-select"
 import { type CatalogSort, catalogSortOptions } from "@/config/catalog"
 import {
@@ -181,15 +182,13 @@ export function CatalogFilters({ basePath, params, options }: CatalogFiltersProp
           </NativeSelect>
         </div>
 
-        <div className="flex h-10 items-center gap-2.5">
-          <input
+        <div className="flex h-10 items-center gap-3">
+          <NativeCheckbox
             id={`${panelId}-stock`}
-            type="checkbox"
             name={P.inStock}
             value="1"
             defaultChecked={params.inStock}
             onChange={applyOnChange}
-            className="size-5 accent-primary"
           />
           <label htmlFor={`${panelId}-stock`} className="text-sm font-medium">
             En stock uniquement
@@ -198,14 +197,12 @@ export function CatalogFilters({ basePath, params, options }: CatalogFiltersProp
       </div>
 
       {hasCriteria && (
-        <Link
-          href={basePath}
-          scroll={false}
-          className="mt-3 inline-flex items-center gap-1 text-sm text-primary underline underline-offset-4"
-        >
-          <XIcon aria-hidden="true" className="size-4" />
-          Effacer la recherche et les filtres
-        </Link>
+        <Button asChild variant="outline" size="sm" className="mt-4">
+          <Link href={basePath} scroll={false}>
+            <XIcon aria-hidden="true" data-icon="inline-start" />
+            Effacer la recherche et les filtres
+          </Link>
+        </Button>
       )}
       <p
         aria-live="polite"

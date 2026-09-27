@@ -1,6 +1,8 @@
 import { ArrowRightIcon } from "lucide-react"
 import Link from "next/link"
 
+import { Button } from "@/components/ui/button"
+
 type SectionHeadingProps = {
   id: string
   eyebrow: string
@@ -19,13 +21,12 @@ export function SectionHeading({ id, eyebrow, title, link }: SectionHeadingProps
         </h2>
       </div>
       {link && (
-        <Link
-          href={link.href}
-          className="inline-flex items-center gap-1.5 font-heading text-xs tracking-wide text-primary uppercase underline-offset-4 hover:underline"
-        >
-          {link.label}
-          <ArrowRightIcon className="size-4" />
-        </Link>
+        <Button asChild variant="cta-outline" size="sm">
+          <Link href={link.href}>
+            {link.label}
+            <ArrowRightIcon data-icon="inline-end" />
+          </Link>
+        </Button>
       )}
     </div>
   )

@@ -8,7 +8,7 @@
  *
  * Les composants n'utilisent jamais de couleur en dur. Ils passent par les
  * tokens shadcn (bg-primary, text-muted-foreground…) branchés sur ces variables
- * dans globals.css, ou par les utilitaires de marque (text-brand, shadow-glow…).
+ * dans globals.css, ou par les utilitaires de marque (text-brand, tactile…).
  */
 :root {
   /* Palette relevée sur le logo */
@@ -34,6 +34,15 @@
     var(--brand-yellow-deep) 100%
   );
   --brand-glow: 0 0 0 1px var(--brand-yellow), 0 12px 40px -14px rgb(248 192 40 / 0.6);
+
+  /*
+   * Relief des éléments interactifs, repris du bouton « Rechercher une carte » :
+   * bordure épaisse et bord inférieur plein qui s'enfonce au clic, comme une
+   * carte posée sur la table (utilitaires tactile et tactile-field, globals.css).
+   */
+  --brand-ledge-depth: 4px; /* épaisseur du bord inférieur */
+  --brand-edge: #4a4640; /* contour et relief des éléments sombres */
+  --brand-danger-deep: #b8372e; /* relief des actions destructrices */
 
   /* Forme */
   --brand-radius: 0.75rem;

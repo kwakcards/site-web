@@ -29,7 +29,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
           <AdminNav />
           <div className="ml-auto flex items-center gap-2">
             <span className="hidden text-xs text-muted-foreground lg:inline">{admin.email}</span>
-            <Button asChild variant="ghost" size="sm">
+            <Button asChild variant="outline" size="sm">
               <Link href="/">
                 <StoreIcon data-icon="inline-start" />
                 Voir la boutique

@@ -59,4 +59,9 @@ describe("contrastes du thème (WCAG 2.2 AA)", () => {
   it("anneau de focus (jaune à 50 %) visible sur le fond", () => {
     expect(contrastRatio(blend(yellow, black, 0.5), black)).toBeGreaterThanOrEqual(NON_TEXT)
   })
+
+  it("boutons destructifs : texte rouge sur la face sombre, texte noir au survol", () => {
+    expect(contrastRatio(token("danger"), raised)).toBeGreaterThanOrEqual(TEXT)
+    expect(contrastRatio(black, token("danger"))).toBeGreaterThanOrEqual(TEXT)
+  })
 })

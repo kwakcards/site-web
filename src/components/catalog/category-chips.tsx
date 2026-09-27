@@ -10,7 +10,7 @@ type CategoryChipsProps = {
 }
 
 const chipClass =
-  "inline-flex h-10 items-center rounded-full border px-4 font-heading text-xs tracking-wide whitespace-nowrap uppercase transition-colors"
+  "tactile inline-flex h-10 items-center rounded-full border-2 px-4 font-heading text-xs tracking-wide whitespace-nowrap uppercase outline-none [--ledge-depth:3px] focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/50"
 
 export function CategoryChips({ categories, current }: CategoryChipsProps) {
   const items: { slug: string | null; name: string; href: string }[] = [
@@ -24,7 +24,7 @@ export function CategoryChips({ categories, current }: CategoryChipsProps) {
 
   return (
     <nav aria-label="Catégories">
-      <ul className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 md:mx-0 md:flex-wrap md:px-0">
+      <ul className="-mx-4 flex gap-2.5 overflow-x-auto px-4 pt-1 pb-3 md:mx-0 md:flex-wrap md:px-0">
         {items.map((item) => {
           const active = item.slug === current
           return (
@@ -35,8 +35,8 @@ export function CategoryChips({ categories, current }: CategoryChipsProps) {
                 className={cn(
                   chipClass,
                   active
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border text-foreground hover:border-primary hover:text-primary"
+                    ? "border-primary bg-primary text-primary-foreground ledge-brand-deep"
+                    : "border-edge bg-secondary text-foreground hover:border-primary hover:text-primary hover:ledge-brand-deep"
                 )}
               >
                 {item.name}

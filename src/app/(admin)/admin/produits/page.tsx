@@ -118,12 +118,9 @@ export default async function AdminProductsPage({ searchParams }: PageProps<"/ad
           Filtrer
         </Button>
         {(q || categoryId) && (
-          <Link
-            href="/admin/produits"
-            className="h-10 content-center text-sm text-primary underline"
-          >
-            Tout afficher
-          </Link>
+          <Button asChild variant="outline" className="h-10">
+            <Link href="/admin/produits">Tout afficher</Link>
+          </Button>
         )}
       </form>
 
@@ -220,8 +217,8 @@ export default async function AdminProductsPage({ searchParams }: PageProps<"/ad
                     {formatDateTimeParis(product.updatedAt)}
                   </TableCell>
                   <TableCell>
-                    <div className="flex justify-end">
-                      <Button asChild variant="ghost" size="icon">
+                    <div className="flex justify-end gap-2">
+                      <Button asChild variant="outline" size="icon">
                         <Link
                           href={`/admin/produits/${product.id}`}
                           aria-label={`Modifier ${product.name}`}

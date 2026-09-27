@@ -39,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-dvh flex-col">
         <a
           href="#contenu"
-          className="sr-only rounded-lg bg-primary px-4 py-3 font-heading text-sm text-primary-foreground uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:outline-2 focus:outline-offset-2 focus:outline-cream"
+          className="sr-only tactile rounded-lg border-2 border-primary bg-primary px-4 py-3 font-heading text-sm text-primary-foreground uppercase ledge-brand-deep focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:outline-2 focus:outline-offset-2 focus:outline-cream"
         >
           Aller au contenu
         </a>

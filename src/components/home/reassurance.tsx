@@ -1,6 +1,8 @@
 import { MessageCircleIcon, ShieldCheckIcon, TruckIcon } from "lucide-react"
 import Link from "next/link"
 
+import { Button } from "@/components/ui/button"
+
 const items = [
   {
     icon: TruckIcon,
@@ -33,12 +35,9 @@ export function Reassurance() {
               <h2 className="font-heading text-sm uppercase">{item.title}</h2>
               <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>
               {item.link && (
-                <Link
-                  href={item.link.href}
-                  className="mt-1 inline-block text-sm text-primary underline underline-offset-4"
-                >
-                  {item.link.label}
-                </Link>
+                <Button asChild variant="outline" size="sm" className="mt-3">
+                  <Link href={item.link.href}>{item.link.label}</Link>
+                </Button>
               )}
             </div>
           </li>

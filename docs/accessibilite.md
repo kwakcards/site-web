@@ -64,6 +64,15 @@ couleur passe sous les seuils. Valeurs actuelles :
 - Filtres du catalogue : état dans l'URL (`/boutique/cartes-gradees?q=…&jeu=…&tri=prix-croissant`), pour qu'un agent puisse partager ou rejouer une recherche. Sans JavaScript, le formulaire fonctionne en GET classique.
 - Plan du site : pages fixes, catégories et fiches produits visibles (`src/app/sitemap.ts`).
 
+## Relief des éléments interactifs
+
+- Chaque élément cliquable a une bordure de 2 px et un bord inférieur plein : il se distingue du
+  texte sans dépendre de la couleur seule. Le focus clavier ajoute un anneau jaune (3 px) par-dessus
+  le relief.
+- L'enfoncement au clic est immédiat quand l'utilisateur préfère réduire les animations
+  (`prefers-reduced-motion`).
+- Les champs, cases à cocher et interrupteurs gardent un contour à 3:1 minimum (`--brand-control`).
+
 ## Administration
 
 - Formulaire produit : chaque champ a un libellé visible ; les champs obligatoires portent `required`

@@ -10,6 +10,9 @@ import { ProductCard } from "@/components/product/product-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { NativeCheckbox } from "@/components/ui/native-checkbox"
+import { NativeSelect } from "@/components/ui/native-select"
+import { Switch } from "@/components/ui/switch"
 
 export const metadata: Metadata = {
   title: "Styleguide",
@@ -23,10 +26,12 @@ const swatches = [
   { token: "--brand-line", usage: "Bordures" },
   { token: "--brand-yellow", usage: "Accent principal" },
   { token: "--brand-yellow-light", usage: "Survols" },
-  { token: "--brand-yellow-deep", usage: "Dégradés, relief" },
+  { token: "--brand-yellow-deep", usage: "Dégradés, relief jaune" },
+  { token: "--brand-edge", usage: "Contour et relief sombres" },
   { token: "--brand-cream", usage: "Texte" },
   { token: "--brand-muted", usage: "Texte secondaire" },
   { token: "--brand-danger", usage: "Erreurs" },
+  { token: "--brand-danger-deep", usage: "Relief destructif" },
   { token: "--brand-success", usage: "Succès" },
 ]
 
@@ -123,6 +128,12 @@ export default function StyleguidePage() {
       </Section>
 
       <Section title="Boutons">
+        <p className="mb-6 max-w-2xl text-sm text-muted-foreground">
+          Tous les éléments interactifs reprennent le relief du bouton « Rechercher une carte » :
+          bordure épaisse, bord inférieur plein qui s&apos;enfonce au clic (utilitaires{" "}
+          <code>tactile</code>, <code>tactile-field</code> et <code>ledge-*</code> dans
+          globals.css). Pas de lueur : le survol passe le contour et le relief en jaune.
+        </p>
         <div className="flex flex-wrap items-center gap-4">
           <Button variant="cta" size="lg">
             Voir le catalogue
@@ -136,10 +147,10 @@ export default function StyleguidePage() {
           <Button variant="outline">
             Filtrer <ArrowRightIcon data-icon="inline-end" />
           </Button>
-          <Button variant="secondary">Secondaire</Button>
-          <Button variant="ghost">Discret</Button>
-          <Button variant="link">Lien</Button>
           <Button variant="destructive">Supprimer</Button>
+          <Button variant="outline" size="icon" aria-label="Panier">
+            <ShoppingBagIcon />
+          </Button>
           <Button disabled>Indisponible</Button>
         </div>
       </Section>
@@ -161,16 +172,28 @@ export default function StyleguidePage() {
       </Section>
 
       <Section title="Formulaire">
-        <form className="flex max-w-md flex-col gap-2">
-          <Label htmlFor="styleguide-email">Adresse email</Label>
-          <div className="flex gap-2">
-            <Input
-              id="styleguide-email"
-              type="email"
-              placeholder="toi@exemple.fr"
-              className="h-10"
-            />
-            <Button type="button">S&apos;inscrire</Button>
+        <form className="flex max-w-md flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="styleguide-email">Adresse email</Label>
+            <div className="flex gap-2">
+              <Input id="styleguide-email" type="email" placeholder="toi@exemple.fr" />
+              <Button type="button">S&apos;inscrire</Button>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="styleguide-langue">Langue</Label>
+            <NativeSelect id="styleguide-langue" defaultValue="FR">
+              <option value="FR">Français</option>
+              <option value="EN">Anglais</option>
+            </NativeSelect>
+          </div>
+          <div className="flex items-center gap-3">
+            <NativeCheckbox id="styleguide-stock" defaultChecked />
+            <Label htmlFor="styleguide-stock">En stock uniquement</Label>
+          </div>
+          <div className="flex items-center gap-3">
+            <Switch id="styleguide-visible" defaultChecked />
+            <Label htmlFor="styleguide-visible">Visible sur la boutique</Label>
           </div>
         </form>
       </Section>

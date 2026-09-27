@@ -19,7 +19,7 @@ export async function CategoryGrid() {
           <li key={category.id}>
             <Link
               href={`/boutique/${category.slug}`}
-              className="group relative flex h-full min-h-36 flex-col justify-end overflow-hidden rounded-xl border border-border bg-card p-4 transition duration-200 hover:border-primary hover:shadow-glow focus-visible:border-primary focus-visible:shadow-glow focus-visible:outline-none"
+              className="group relative flex h-full min-h-36 tactile flex-col justify-end overflow-hidden rounded-xl border-2 border-edge bg-card p-4 outline-none hover:border-primary hover:ledge-brand-deep focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ledge-brand-deep"
             >
               <CardTrio className="absolute -top-2 -right-4 w-24 rotate-6 opacity-20 transition group-hover:opacity-40 motion-reduce:transition-none" />
               <span className="relative font-heading text-sm uppercase">{category.name}</span>

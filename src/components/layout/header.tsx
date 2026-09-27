@@ -18,13 +18,13 @@ export function Header() {
         <Logo eager className="h-12 md:h-16" sizes="64px" />
 
         <nav aria-label="Catégories" className="ml-6 hidden lg:block">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-2">
             {mainNav.map((link) => (
               <li key={link.href}>
                 <NavLink
                   href={link.href}
-                  className="relative rounded-md px-3 py-2 font-heading text-xs tracking-wide text-foreground/85 uppercase transition-colors after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-primary after:transition-transform hover:text-primary hover:after:scale-x-100 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
-                  activeClassName="text-primary after:scale-x-100"
+                  className="inline-flex h-9 tactile items-center rounded-lg border-2 border-edge bg-secondary px-3 font-heading text-xs tracking-wide text-foreground uppercase outline-none [--ledge-depth:3px] hover:border-primary hover:text-primary hover:ledge-brand-deep focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/50"
+                  activeClassName="border-primary bg-primary text-primary-foreground ledge-brand-deep hover:text-primary-foreground"
                 >
                   {link.label}
                 </NavLink>
@@ -37,7 +37,7 @@ export function Header() {
           <Suspense fallback={null}>
             <AdminLink />
           </Suspense>
-          <Button asChild variant="ghost" size="icon-lg">
+          <Button asChild variant="outline" size="icon-lg">
             <Link href="/boutique#recherche" aria-label="Rechercher une carte">
               <SearchIcon className="size-5" />
             </Link>

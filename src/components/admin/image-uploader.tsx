@@ -178,8 +178,8 @@ export function ImageUploader({
             <li
               key={item.path}
               className={cn(
-                "flex gap-3 rounded-xl border bg-background p-3",
-                index === 0 ? "border-primary/60" : "border-border"
+                "flex gap-3 rounded-xl border-2 bg-background p-3",
+                index === 0 ? "border-primary/60" : "border-edge"
               )}
             >
               <div className="relative aspect-[63/88] w-20 shrink-0 overflow-hidden rounded-md bg-card">
@@ -199,10 +199,10 @@ export function ImageUploader({
                       <span className="text-muted-foreground"> · non enregistrée</span>
                     )}
                   </span>
-                  <div className="flex">
+                  <div className="flex gap-1.5">
                     <Button
                       type="button"
-                      variant="ghost"
+                      variant="outline"
                       size="icon-sm"
                       onClick={() => move(index, -1)}
                       disabled={index === 0}
@@ -212,7 +212,7 @@ export function ImageUploader({
                     </Button>
                     <Button
                       type="button"
-                      variant="ghost"
+                      variant="outline"
                       size="icon-sm"
                       onClick={() => move(index, 1)}
                       disabled={index === items.length - 1}
@@ -222,11 +222,10 @@ export function ImageUploader({
                     </Button>
                     <Button
                       type="button"
-                      variant="ghost"
+                      variant="destructive"
                       size="icon-sm"
                       onClick={() => remove(index)}
                       aria-label={`Retirer la photo ${index + 1}`}
-                      className="text-destructive hover:text-destructive"
                     >
                       <Trash2Icon />
                     </Button>
@@ -288,11 +287,11 @@ export function ImageUploader({
           if (!full) void addFiles(event.dataTransfer.files)
         }}
         className={cn(
-          "flex flex-col items-center gap-1 rounded-xl border-2 border-dashed px-4 py-6 text-center transition-colors has-[:focus-visible]:border-ring has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/50",
+          "flex flex-col items-center gap-1 rounded-xl border-2 border-dashed bg-secondary px-4 py-6 text-center has-[:focus-visible]:border-primary has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/50",
           full
-            ? "cursor-not-allowed border-border opacity-60"
-            : "cursor-pointer border-input hover:border-primary",
-          dragging && "border-primary bg-primary/5"
+            ? "cursor-not-allowed border-edge opacity-60"
+            : "tactile cursor-pointer border-input hover:border-primary hover:ledge-brand-deep",
+          dragging && "border-primary bg-primary/5 ledge-brand-deep"
         )}
       >
         <ImagePlusIcon aria-hidden="true" className="size-7 text-primary" />

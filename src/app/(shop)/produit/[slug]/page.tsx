@@ -13,6 +13,7 @@ import { ProductGrid } from "@/components/product/product-grid"
 import { ProductSpecs } from "@/components/product/product-specs"
 import { StockStatus } from "@/components/product/stock-status"
 import { JsonLd } from "@/components/seo/json-ld"
+import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { brand } from "@/config/brand"
 import { shopDefaults } from "@/config/shop"
@@ -121,17 +122,17 @@ async function ProductContent({ params }: Pick<Props, "params">) {
 
           {/* Le bouton « Ajouter au panier » arrivera avec la commande en ligne (phase 6). */}
           {!shopDefaults.onlineOrdering && (
-            <div className="rounded-xl border border-primary/40 bg-card p-4 text-sm">
+            <div className="rounded-xl border-2 border-primary/40 bg-card p-4 text-sm">
               <p className="font-heading text-xs tracking-wide text-primary uppercase">
                 Commande en ligne bientôt disponible
               </p>
               <p className="mt-2 text-muted-foreground">
-                Cet article t&apos;intéresse ?{" "}
-                <Link href="/contact" className="text-primary underline underline-offset-4">
-                  Écris-nous
-                </Link>{" "}
-                en indiquant son nom : on te répond rapidement.
+                Cet article t&apos;intéresse ? Écris-nous en indiquant son nom : on te répond
+                rapidement.
               </p>
+              <Button asChild variant="cta" className="mt-4">
+                <Link href="/contact">Nous écrire</Link>
+              </Button>
             </div>
           )}
 

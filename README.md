@@ -138,7 +138,7 @@ toucher aux composants :
 
 | Fichier                                                     | Contenu                                                               |
 | ----------------------------------------------------------- | --------------------------------------------------------------------- |
-| `src/styles/theme.css`                                      | couleurs, dégradé, lueur, rayon des coins                             |
+| `src/styles/theme.css`                                      | couleurs, dégradé, relief des éléments interactifs, rayon des coins   |
 | `src/styles/fonts.ts`                                       | typographies (Knewave, Archivo Black, Inter)                          |
 | `src/config/brand.ts`                                       | nom, baseline, description, chemins du logo                           |
 | `public/brand/`                                             | logo détouré (`logo.png`) et logo sur fond noir (`logo-on-black.png`) |
@@ -146,7 +146,15 @@ toucher aux composants :
 | `docs/brand/`                                               | fichier source du logo                                                |
 
 Les composants utilisent uniquement les tokens (`bg-primary`, `text-muted-foreground`,
-`font-display`, `shadow-glow`…), jamais de couleurs en dur.
+`font-display`, `tactile`…), jamais de couleurs en dur.
+
+**Relief des éléments interactifs.** Boutons, liens-boutons, puces, pagination, cartes
+cliquables et champs reprennent le style du bouton « Rechercher une carte » : typo « CARDS »
+en capitales pour les boutons, bordure épaisse et bord inférieur plein qui s'enfonce au clic.
+Il est défini une seule fois dans `src/app/globals.css` (`tactile`, `tactile-field`,
+`ledge-*`) avec ses couleurs dans `theme.css` (`--brand-edge`, `--brand-ledge-depth`…) ; le
+composant `Button` l'applique à toutes ses variantes. Les liens placés dans un texte (pages
+légales, pied de page, fil d'Ariane) restent des liens soulignés, pour la lisibilité.
 
 ## Conformité légale et accessibilité
 

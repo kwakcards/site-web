@@ -42,9 +42,9 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card transition duration-200",
-        "hover:-translate-y-1 hover:border-primary hover:shadow-glow",
-        "focus-within:border-primary focus-within:shadow-glow motion-reduce:hover:translate-y-0",
+        "group relative flex tactile flex-col overflow-hidden rounded-xl border-2 border-edge bg-card",
+        "hover:border-primary hover:ledge-brand-deep",
+        "focus-within:border-primary focus-within:ledge-brand-deep has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/50",
         className
       )}
     >

@@ -23,20 +23,19 @@ export function pageWindow(page: number, pageCount: number): (number | "gap")[] 
 }
 
 const itemClass =
-  "inline-flex h-10 min-w-10 items-center justify-center gap-1 rounded-lg border px-3 text-sm transition-colors"
+  "tactile inline-flex h-10 min-w-10 items-center justify-center gap-1 rounded-lg border-2 px-3 font-heading text-xs tracking-wide uppercase outline-none focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/50"
+const idleClass =
+  "border-edge bg-secondary text-foreground hover:border-primary hover:text-primary hover:ledge-brand-deep"
 
 export function Pagination({ page, pageCount, hrefFor }: PaginationProps) {
   if (pageCount <= 1) return null
 
   return (
     <nav aria-label="Pagination" className="mt-10">
-      <ul className="flex flex-wrap items-center justify-center gap-2">
+      <ul className="flex flex-wrap items-center justify-center gap-2.5">
         <li>
           {page > 1 ? (
-            <Link
-              href={hrefFor(page - 1)}
-              className={cn(itemClass, "border-border hover:border-primary")}
-            >
+            <Link href={hrefFor(page - 1)} className={cn(itemClass, idleClass)}>
               <ChevronLeftIcon aria-hidden="true" className="size-4" />
               Précédente
             </Link>
@@ -56,8 +55,8 @@ export function Pagination({ page, pageCount, hrefFor }: PaginationProps) {
                 className={cn(
                   itemClass,
                   item === page
-                    ? "border-primary bg-primary font-semibold text-primary-foreground"
-                    : "border-border hover:border-primary"
+                    ? "border-primary bg-primary text-primary-foreground ledge-brand-deep"
+                    : idleClass
                 )}
               >
                 {item}
@@ -67,10 +66,7 @@ export function Pagination({ page, pageCount, hrefFor }: PaginationProps) {
         )}
         <li>
           {page < pageCount ? (
-            <Link
-              href={hrefFor(page + 1)}
-              className={cn(itemClass, "border-border hover:border-primary")}
-            >
+            <Link href={hrefFor(page + 1)} className={cn(itemClass, idleClass)}>
               Suivante
               <ChevronRightIcon aria-hidden="true" className="size-4" />
             </Link>

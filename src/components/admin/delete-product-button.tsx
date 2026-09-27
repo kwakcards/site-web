@@ -51,12 +51,7 @@ export function DeleteProductButton({
     <AlertDialog open={open} onOpenChange={(value) => !pending && setOpen(value)}>
       <AlertDialogTrigger asChild>
         {compact ? (
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label={`Supprimer ${productName}`}
-            className="text-destructive hover:text-destructive"
-          >
+          <Button variant="destructive" size="icon" aria-label={`Supprimer ${productName}`}>
             <Trash2Icon />
           </Button>
         ) : (
