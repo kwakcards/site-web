@@ -36,7 +36,13 @@ fiche produit invite à contacter la boutique (interrupteur `onlineOrdering` dan
 
 ## Installation
 
+Le code est sur le GitHub de l'entreprise, dans le dépôt privé
+[`kwakcards/site-web`](https://github.com/kwakcards/site-web) (accès sur invitation du compte
+`kwakcards`).
+
 ```bash
+git clone https://github.com/kwakcards/site-web.git kwak-and-cards
+cd kwak-and-cards
 npm install
 cp .env.example .env.local   # puis compléter les valeurs
 npm run dev                  # http://localhost:3000
@@ -222,6 +228,7 @@ Gil, le propriétaire.
       compte admin de Gil en production, désactiver les inscriptions publiques.
 - [ ] Supprimer les données de démonstration et le compte admin de démo du projet dev quand ils
       ne servent plus (`scripts/demo/demo-catalog.mts remove`, puis Authentication → Users).
-- [ ] Pousser le dépôt (aujourd'hui local) vers le GitHub de l'entreprise, puis déployer sur son
-      compte Vercel (variables : voir `.env.example`).
-- [ ] Révoquer les accès temporaires (connecteur Supabase utilisé pendant le développement).
+- [x] Dépôt poussé sur le GitHub de l'entreprise : `kwakcards/site-web`, privé.
+- [ ] Déployer sur le compte Vercel de l'entreprise (variables : voir `.env.example`).
+- [ ] Révoquer les accès temporaires : connecteur Supabase utilisé pendant le développement, et
+      collaborateurs GitHub qui n'ont plus besoin d'accès (Settings → Collaborators).
