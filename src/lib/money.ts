@@ -29,6 +29,23 @@ export function formatPrice(cents: number, { compact = false }: FormatOptions = 
   return `${sign}${eurosText}${centsText}${NBSP}€`
 }
 
+/**
+ * Saisie d'un prix en euros (« 12,50 », « 12.5 », « 1 200 », « 12 € ») → centimes.
+ * Renvoie null si la saisie n'est pas un montant positif à 2 décimales maximum.
+ */
+export function parseEuroToCents(input: string): number | null {
+  const normalized = input.replace(/[\s  €]/g, "").replace(",", ".")
+  if (!/^\d+(\.\d{1,2})?$/.test(normalized)) return null
+  const [euros, decimals = ""] = normalized.split(".")
+  return Number(euros) * 100 + Number(decimals.padEnd(2, "0"))
+}
+
+/** Centimes → valeur de champ de formulaire : 1250 → « 12,50 ». */
+export function centsToEuroInput(cents: number | null | undefined): string {
+  if (cents == null) return ""
+  return `${Math.floor(cents / 100)},${(cents % 100).toString().padStart(2, "0")}`
+}
+
 /** Économie réalisée (en centimes) si le prix barré est valide, sinon 0. */
 export function savingsCents(priceCents: number, compareAtPriceCents?: number | null): number {
   if (compareAtPriceCents == null || compareAtPriceCents <= priceCents) return 0

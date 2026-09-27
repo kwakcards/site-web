@@ -1,7 +1,9 @@
-import { SearchIcon, ShoppingBagIcon } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 import Link from "next/link"
+import { Suspense } from "react"
 
 import { Logo } from "@/components/brand/logo"
+import { AdminLink } from "@/components/layout/admin-link"
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { NavLink } from "@/components/layout/nav-link"
 import { Button } from "@/components/ui/button"
@@ -32,16 +34,15 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1">
+          <Suspense fallback={null}>
+            <AdminLink />
+          </Suspense>
           <Button asChild variant="ghost" size="icon-lg">
-            <Link href="/boutique" aria-label="Rechercher une carte">
+            <Link href="/boutique#recherche" aria-label="Rechercher une carte">
               <SearchIcon className="size-5" />
             </Link>
           </Button>
-          <Button asChild variant="ghost" size="icon-lg">
-            <Link href="/panier" aria-label="Voir le panier">
-              <ShoppingBagIcon className="size-5" />
-            </Link>
-          </Button>
+          {/* Le panier arrivera avec la commande en ligne (phase 6). */}
         </div>
       </div>
     </header>

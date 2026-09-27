@@ -42,11 +42,16 @@ Version détaillée et sourcée pour Gil : document « Kwak & Cards : check-list
 
 - **Phase 2 (base de données)**
   - table `withdrawal_requests` avec horodatage, et branchement de `submitWithdrawal` ;
-  - historique des prix (`product_price_history`) et contrôle du prix barré en base (L112-1-1) ;
+  - ✅ historique des prix (`product_price_history`) et contrôle du prix barré en base (L112-1-1) :
+    fait (migration `20260926120200_catalog.sql`, déclencheur `products_before_write`). Un prix barré
+    est refusé à la création d'un produit, et ne peut jamais dépasser le prix le plus bas pratiqué
+    au cours des 30 jours précédant la réduction ; la référence reste la même pendant des baisses
+    successives ;
   - effacement automatique des empreintes IP après 30 jours au plus ;
   - archivage des commandes (10 ans pour les pièces comptables et les contrats d'au moins 120 €).
 - **Phase 5 (admin)**
-  - prix de référence barré proposé automatiquement ;
+  - ✅ l'admin refuse un prix barré trop élevé et affiche la valeur maximale autorisée (fait) ;
+    reste à faire : proposer automatiquement ce prix de référence dans le formulaire ;
   - export et suppression des données d'un client (droits d'accès, de portabilité et d'effacement) ;
   - le délai de paiement réglable doit rester aligné avec la CGV (`legal.paymentDeadlineHours`).
 - **Phase 6 (commande et emails)**

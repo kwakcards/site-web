@@ -4,12 +4,13 @@ import { sitePages } from "@/config/site-pages"
 import { shopDefaults } from "@/config/shop"
 import { getSiteUrl } from "@/lib/env"
 import { formatPrice } from "@/lib/money"
+import { type CatalogCategory, getCategories } from "@/server/queries/catalog"
 
 /**
  * Résumé du site au format llms.txt (https://llmstxt.org), pour les agents IA :
  * ce que vend la boutique, comment commander, et où trouver les conditions.
  */
-function buildLlmsTxt(): string {
+function buildLlmsTxt(categories: CatalogCategory[]): string {
   const site = getSiteUrl()
   const { flatRateCents, freeShippingThresholdCents } = shopDefaults.shipping
   const link = (path: string) => `${site}${path === "/" ? "" : path}`
@@ -17,6 +18,16 @@ function buildLlmsTxt(): string {
   const pages = sitePages
     .map((page) => `- [${page.title}](${link(page.path)}): ${page.description}`)
     .join("\n")
+  const catalog = categories
+    .map(
+      (category) =>
+        `- [${category.name}](${link(`/boutique/${category.slug}`)})${category.description ? `: ${category.description}` : ""}`
+    )
+    .join("\n")
+  const ordering = shopDefaults.onlineOrdering
+    ? `- Commande sans compte client : panier, coordonnées, choix de la livraison et du paiement, puis validation explicite avec le bouton « Commander avec obligation de paiement ».
+- Paiement hors ligne pour l'instant (${shopDefaults.offlinePaymentMethods.join(", ")}). Les articles sont réservés ${legal.paymentDeadlineHours} heures ; sans paiement, la commande est annulée automatiquement.`
+    : `- La commande en ligne ouvrira prochainement. En attendant, contactez la boutique pour tout article qui vous intéresse : ${link("/contact")}.`
 
   return `# ${brand.name}
 
@@ -26,10 +37,15 @@ function buildLlmsTxt(): string {
 
 ${pages}
 
+## Catalogue
+
+Chaque fiche produit (${link("/produit/…")}) indique le prix final en euros, le stock, l'état ou la note de gradation, et publie ces informations en données structurées schema.org (Product, Offer). Recherche et filtres par paramètres d'URL, par exemple ${link("/boutique?q=dracaufeu&langue=FR&stock=1")}.
+
+${catalog}
+
 ## Acheter
 
-- Commande sans compte client : panier, coordonnées, choix de la livraison et du paiement, puis validation explicite avec le bouton « Commander avec obligation de paiement ».
-- Paiement hors ligne pour l'instant (${shopDefaults.offlinePaymentMethods.join(", ")}). Les articles sont réservés ${legal.paymentDeadlineHours} heures ; sans paiement, la commande est annulée automatiquement.
+${ordering}
 - Livraison en ${legal.shipping.area} : envoi suivi à ${formatPrice(flatRateCents)}${
     freeShippingThresholdCents
       ? `, offert dès ${formatPrice(freeShippingThresholdCents, { compact: true })} d'achat`
@@ -46,8 +62,8 @@ ${pages}
 `
 }
 
-export function GET() {
-  return new Response(buildLlmsTxt(), {
+export async function GET() {
+  return new Response(buildLlmsTxt(await getCategories()), {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
   })
 }

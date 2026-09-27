@@ -13,6 +13,11 @@ const shipping = {
 }
 
 export const shopDefaults = {
+  /**
+   * Commande en ligne (panier + paiement hors ligne, phase 6). Tant que c'est
+   * `false`, les fiches produits invitent à contacter la boutique.
+   */
+  onlineOrdering: false,
   shipping,
   /** Moyens de paiement hors ligne proposés en v1 (avant Stripe). */
   offlinePaymentMethods: ["Virement bancaire", "PayPal", "Wero"],

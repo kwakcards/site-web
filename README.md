@@ -3,8 +3,20 @@
 Boutique en ligne de cartes à collectionner (TCG) : cartes à l'unité, cartes
 gradées, produits scellés, pièces collector et accessoires.
 
-La v1 permet de commander en ligne avec un **paiement hors ligne** (virement,
-PayPal, Wero…). Le paiement par carte (Stripe) sera ajouté dans un second temps.
+**Ce que fait la V1 aujourd'hui**
+
+- Vitrine : accueil (catégories et derniers ajouts lus en base), catalogue avec recherche
+  (sans accents, mots dans n'importe quel ordre), filtres (jeu, langue, état, gradation, stock),
+  tri et pagination, fiche produit (galerie, caractéristiques, prix barré légal, stock).
+- Administration (`/admin`) : connexion, tableau de bord, liste des produits, création,
+  modification, duplication, masquage et suppression d'un article, avec ses photos
+  (compressées dans le navigateur puis envoyées sur Supabase Storage).
+- Pages légales, accessibilité WCAG 2.2 AA, données structurées et `/llms.txt`.
+
+**Pas encore disponible** : la commande en ligne (panier, commande avec paiement hors ligne :
+virement, PayPal, Wero…), les emails, puis le paiement par carte (Stripe). En attendant, chaque
+fiche produit invite à contacter la boutique (interrupteur `onlineOrdering` dans
+`src/config/shop.ts`).
 
 ## Stack
 
@@ -45,12 +57,79 @@ Le styleguide (couleurs, typos, composants) est visible en développement sur
 | `npm run check`               | lint + typecheck + tests                         |
 | `npm run format`              | formatage Prettier                               |
 
+Script de démonstration (voir [Données de démonstration](#données-de-démonstration)) :
+`node --env-file=.env.local scripts/demo/demo-catalog.mts <images | remove | preview <dossier>>`.
+
 ## Variables d'environnement
 
 Toutes les variables sont documentées dans [`.env.example`](.env.example).
 Les variables `NEXT_PUBLIC_*` sont publiques ; toutes les autres sont réservées
 au serveur. Aucun secret n'est versionné (`.env*` est ignoré par git, sauf
 l'exemple).
+
+## Base de données (Supabase)
+
+Deux projets dans l'organisation Supabase de l'entreprise :
+
+| Projet               | Usage                                                     |
+| -------------------- | --------------------------------------------------------- |
+| `kwakcards-dev`      | développement local et previews Vercel                    |
+| projet de production | site en ligne (aucune migration appliquée pour l'instant) |
+
+Le schéma est versionné dans [`supabase/migrations/`](supabase/migrations), à appliquer **dans
+l'ordre** (éditeur SQL de Supabase, ou `supabase db push` avec la CLI) :
+
+| Migration                    | Contenu                                                                               |
+| ---------------------------- | ------------------------------------------------------------------------------------- |
+| `…120000_extensions_helpers` | extensions (`pg_trgm`, `unaccent`, `citext`), fonctions utilitaires                   |
+| `…120100_profiles_roles`     | profils et rôles (`customer` / `admin`), créés à l'inscription                        |
+| `…120200_catalog`            | catégories, produits, photos, historique des prix, règle du prix barré, facettes, RLS |
+| `…120300_storage_media`      | bucket public `media` (photos), écriture réservée à l'admin                           |
+| `…120400_seed_categories`    | les 5 catégories de départ                                                            |
+| `…120500_private_is_admin`   | fonction `private.is_admin()` utilisée par toutes les règles RLS                      |
+
+Sécurité : la RLS est active sur toutes les tables. Les visiteurs ne lisent que les produits
+visibles ; seules les sessions admin peuvent écrire (base et photos). Chaque action serveur de
+l'admin revérifie en plus le rôle (`requireAdmin`).
+
+Règle du prix barré (C. conso L112-1-1) : chaque prix est historisé ; un prix barré ne peut pas
+dépasser le prix le plus bas pratiqué pendant les 30 jours précédant la réduction. La base
+refuse tout prix barré non conforme, et l'admin affiche la valeur maximale autorisée.
+
+## Administration
+
+- Adresse : `/admin` (redirige vers `/connexion` si besoin). Le bouton « Admin » apparaît
+  dans le header quand un admin est connecté.
+- **Créer le compte de Gil** (à faire par lui, sur chaque projet Supabase) :
+  1. Authentication → Users → _Add user_ → _Create new user_ : son email et un mot de passe
+     qu'il choisit, case _Auto Confirm User_ cochée ;
+  2. SQL Editor :
+     `update public.profiles set role = 'admin' where email = 'son-email@exemple.fr';`
+  3. Authentication → Sign In / Providers : désactiver _Allow new users to sign up_
+     (pas de comptes clients en V1).
+- Photos : JPEG, PNG, WebP ou AVIF, 12 par produit. Elles sont redimensionnées (1 600 px),
+  converties en WebP et débarrassées de leurs métadonnées (GPS…) dans le navigateur, puis
+  rangées dans `media/products/<id du produit>/`. Une photo retirée est supprimée du stockage à
+  l'enregistrement ; supprimer un produit supprime tout son dossier.
+- Limite connue : une photo envoyée dans un formulaire finalement abandonné reste dans le
+  stockage (quelques centaines de Ko). Un nettoyage automatique pourra être ajouté.
+
+## Données de démonstration
+
+25 articles **fictifs** (24 visibles, 1 masqué, 4 en promotion) permettent de montrer la V1.
+Leurs slugs commencent par `demo-` et leurs visuels portent la mention « Visuel de
+démonstration ». Uniquement sur le projet **dev** :
+
+```bash
+# 1. Articles : exécuter supabase/demo/demo-products.sql dans l'éditeur SQL du projet dev
+# 2. Visuels (compte admin de démo défini dans .env.local) :
+node --env-file=.env.local scripts/demo/demo-catalog.mts images
+# Tout supprimer (articles et fichiers) :
+node --env-file=.env.local scripts/demo/demo-catalog.mts remove
+```
+
+Le compte admin de démo (`DEMO_ADMIN_EMAIL` / `DEMO_ADMIN_PASSWORD` dans `.env.local`) n'existe
+que sur le projet dev ; il ne doit jamais être créé en production.
 
 ## Identité visuelle
 
@@ -87,31 +166,54 @@ Les composants utilisent uniquement les tokens (`bg-primary`, `text-muted-foregr
 ```
 src/
 ├── app/
-│   ├── (shop)/          pages publiques (bandeau + header + footer)
+│   ├── (shop)/          pages publiques : accueil, boutique, produit, connexion, pages légales
+│   ├── (admin)/admin/   administration (protégée) : tableau de bord, produits
+│   ├── sitemap.ts       plan du site (pages, catégories, fiches produits)
 │   └── layout.tsx       racine : typos, métadonnées, notifications
 ├── components/
 │   ├── ui/              primitives shadcn
+│   ├── admin/           formulaire produit, envoi des photos, suppression, visibilité
+│   ├── catalog/         filtres, catégories, pagination
+│   ├── home/            sections de l'accueil
 │   ├── brand/           logo et motifs décoratifs (éclaboussure, trio de cartes)
-│   ├── layout/          bandeau d'annonce, header, menu mobile, footer
-│   └── product/         carte produit, prix, badges
-├── config/              marque, navigation, valeurs par défaut de la boutique
-├── lib/                 utilitaires (montants, variables d'environnement…)
+│   ├── layout/          bandeau d'annonce, header, menu mobile, footer, fil d'Ariane
+│   └── product/         carte produit, prix, badges, galerie, caractéristiques
+├── config/              marque, navigation, catalogue, valeurs par défaut de la boutique
+├── lib/                 utilitaires (montants, slugs, validation, Supabase, authentification…)
+├── server/
+│   ├── queries/         lectures (catalogue public en cache, admin sans cache)
+│   └── actions/         actions serveur (connexion, produits, rétractation)
+├── proxy.ts             session Supabase et protection de /admin
 └── styles/              thème et typographies
+supabase/
+├── migrations/          schéma versionné
+└── demo/                articles fictifs (projet dev uniquement)
+scripts/demo/            visuels des articles fictifs
 ```
 
 ## Avancement
 
 - [x] Phase 1 : socle technique et thème
-- [ ] Phase 2 : schéma de données et authentification
-- [ ] Phase 3 : landing page
-- [ ] Phase 4 : catalogue et fiche produit
-- [ ] Phase 5 : espace admin
-- [ ] Phase 6 : panier et commande (paiement hors ligne)
-- [ ] Phase 7 : pages légales
+- [x] Phase 2 : schéma du catalogue et authentification admin (tables des commandes : phase 6)
+- [x] Phase 3 : accueil (catégories, derniers ajouts, réassurance) ; carrousel et newsletter à venir
+- [x] Phase 4 : catalogue et fiche produit
+- [x] Phase 5 (partie produits) : admin des produits et des photos ; catégories, bannières,
+      réglages et commandes à venir
+- [ ] Phase 6 : panier et commande (paiement hors ligne), emails
+- [x] Phase 7 : pages légales (textes à compléter par Gil, voir `docs/legal/conformite.md`)
 - [ ] Phase 8 : mise en ligne
+- [ ] Plus tard : paiement par carte (Stripe)
 
 ## Passation
 
-Tous les comptes (Supabase, Vercel, Resend, GitHub, domaine) appartiennent à l'entreprise de Gil, le propriétaire. Cette section sera complétée au fil des
-phases (création d'un admin, migrations de base, déploiement, révocation des
-accès temporaires).
+Tous les comptes (Supabase, Vercel, Resend, GitHub, domaine) appartiennent à l'entreprise de
+Gil, le propriétaire.
+
+- [ ] Gil crée son compte admin sur le projet dev (voir [Administration](#administration)).
+- [ ] Avant la mise en ligne : appliquer les migrations sur le projet de production, créer le
+      compte admin de Gil en production, désactiver les inscriptions publiques.
+- [ ] Supprimer les données de démonstration et le compte admin de démo du projet dev quand ils
+      ne servent plus (`scripts/demo/demo-catalog.mts remove`, puis Authentication → Users).
+- [ ] Pousser le dépôt (aujourd'hui local) vers le GitHub de l'entreprise, puis déployer sur son
+      compte Vercel (variables : voir `.env.example`).
+- [ ] Révoquer les accès temporaires (connecteur Supabase utilisé pendant le développement).

@@ -1,7 +1,7 @@
 /**
  * Pages publiques et indexables, utilisées par le plan du site (sitemap.xml)
  * et par le résumé destiné aux agents IA (llms.txt). Les fiches produits et
- * catégories s'y ajouteront en phase 4.
+ * catégories sont ajoutées à partir de la base (voir src/app/sitemap.ts).
  */
 export type SitePage = {
   path: string
@@ -16,6 +16,12 @@ export const sitePages: SitePage[] = [
     path: "/",
     title: "Accueil",
     description: "Présentation de la boutique, derniers ajouts et catégories.",
+  },
+  {
+    path: "/boutique",
+    title: "Catalogue",
+    description:
+      "Tous les articles, avec recherche, filtres (jeu, langue, état, gradation) et tri.",
   },
   {
     path: "/faq",

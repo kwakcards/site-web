@@ -59,9 +59,20 @@ couleur passe sous les seuils. Valeurs actuelles :
   - `OnlineStore` avec sa politique de retour de 14 jours ;
   - `WebSite` ;
   - `FAQPage` sur la FAQ ;
-  - `Product` à venir sur les fiches produits (phase 4).
+  - `Product` (avec `Offer` : prix, disponibilité, état neuf ou occasion) et `BreadcrumbList` sur les fiches produits.
 - Conditions d'utilisation : section dédiée aux agents (`/conditions-utilisation#agents`).
-- Filtres du catalogue (phase 4) : état dans l'URL, pour qu'un agent puisse partager ou rejouer une recherche.
+- Filtres du catalogue : état dans l'URL (`/boutique/cartes-gradees?q=…&jeu=…&tri=prix-croissant`), pour qu'un agent puisse partager ou rejouer une recherche. Sans JavaScript, le formulaire fonctionne en GET classique.
+- Plan du site : pages fixes, catégories et fiches produits visibles (`src/app/sitemap.ts`).
+
+## Administration
+
+- Formulaire produit : chaque champ a un libellé visible ; les champs obligatoires portent `required`
+  et un astérisque expliqué en tête de formulaire.
+- Erreurs : résumé en tête (`role="alert"`, qui reçoit le focus) avec des liens vers les champs, et
+  message sous chaque champ relié par `aria-describedby` (`aria-invalid` sur le champ).
+- Photos : ajout au clavier (champ fichier), ordre modifiable par boutons « avant / après » (pas
+  seulement par glisser-déposer), et un texte alternatif à saisir pour chaque photo.
+- Suppression : confirmation dans une boîte de dialogue accessible (focus piégé, Échap pour annuler).
 
 ## Vérifier
 

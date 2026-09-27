@@ -1,6 +1,30 @@
 import { describe, expect, it } from "vitest"
 
-import { formatPrice, savingsCents } from "./money"
+import { centsToEuroInput, formatPrice, parseEuroToCents, savingsCents } from "./money"
+
+describe("parseEuroToCents", () => {
+  it("accepte les formats de saisie courants", () => {
+    expect(parseEuroToCents("12,50")).toBe(1250)
+    expect(parseEuroToCents("12.5")).toBe(1250)
+    expect(parseEuroToCents("12")).toBe(1200)
+    expect(parseEuroToCents("1 200,00 €")).toBe(120000)
+    expect(parseEuroToCents("0,05")).toBe(5)
+  })
+
+  it("refuse les montants invalides", () => {
+    expect(parseEuroToCents("")).toBeNull()
+    expect(parseEuroToCents("-3")).toBeNull()
+    expect(parseEuroToCents("12,345")).toBeNull()
+    expect(parseEuroToCents("douze")).toBeNull()
+  })
+
+  it("fait l'aller-retour avec centsToEuroInput", () => {
+    for (const cents of [0, 5, 1250, 89990]) {
+      expect(parseEuroToCents(centsToEuroInput(cents))).toBe(cents)
+    }
+    expect(centsToEuroInput(null)).toBe("")
+  })
+})
 
 const NBSP = " "
 const NARROW_NBSP = " "
