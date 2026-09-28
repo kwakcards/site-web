@@ -73,14 +73,30 @@ Les variables `NEXT_PUBLIC_*` sont publiques ; toutes les autres sont réservée
 au serveur. Aucun secret n'est versionné (`.env*` est ignoré par git, sauf
 l'exemple).
 
+### Déploiement sur Vercel
+
+À saisir dans Vercel → Settings → Environment Variables **avant le premier déploiement** (les
+pages sont pré-rendues à partir de la base : sans ces variables, le build échoue). Les valeurs
+se trouvent dans Supabase → Project Settings → API Keys (clé « publishable »).
+
+| Variable                               | Production                                                       | Preview                            |
+| -------------------------------------- | ---------------------------------------------------------------- | ---------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`             | URL du projet de production                                      | URL de `kwakcards-dev`             |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | clé publishable du projet de production                          | clé publishable de `kwakcards-dev` |
+| `NEXT_PUBLIC_SITE_URL`                 | adresse définitive du site (sinon l'adresse Vercel est utilisée) | à laisser vide                     |
+
+Les variables `NEXT_PUBLIC_*` sont intégrées au build : après une modification, il faut
+redéployer. Les autres variables de `.env.example` (Resend, clé secrète, `IP_HASH_SECRET`)
+serviront avec la commande en ligne ; `DEMO_ADMIN_*` ne va jamais sur Vercel.
+
 ## Base de données (Supabase)
 
 Deux projets dans l'organisation Supabase de l'entreprise :
 
-| Projet               | Usage                                                     |
-| -------------------- | --------------------------------------------------------- |
-| `kwakcards-dev`      | développement local et previews Vercel                    |
-| projet de production | site en ligne (aucune migration appliquée pour l'instant) |
+| Projet               | Usage                                                                |
+| -------------------- | -------------------------------------------------------------------- |
+| `kwakcards-dev`      | développement local et previews Vercel                               |
+| projet de production | site en ligne (6 migrations appliquées le 28/09/2026, sans articles) |
 
 Le schéma est versionné dans [`supabase/migrations/`](supabase/migrations), à appliquer **dans
 l'ordre** (éditeur SQL de Supabase, ou `supabase db push` avec la CLI) :
@@ -224,11 +240,13 @@ Tous les comptes (Supabase, Vercel, Resend, GitHub, domaine) appartiennent à l'
 Gil, le propriétaire.
 
 - [ ] Gil crée son compte admin sur le projet dev (voir [Administration](#administration)).
-- [ ] Avant la mise en ligne : appliquer les migrations sur le projet de production, créer le
-      compte admin de Gil en production, désactiver les inscriptions publiques.
+- [x] Migrations appliquées sur le projet de production (5 catégories, aucun article).
+- [ ] Créer le compte admin de Gil en production et désactiver les inscriptions publiques
+      (voir [Administration](#administration)).
 - [ ] Supprimer les données de démonstration et le compte admin de démo du projet dev quand ils
       ne servent plus (`scripts/demo/demo-catalog.mts remove`, puis Authentication → Users).
 - [x] Dépôt poussé sur le GitHub de l'entreprise : `kwakcards/site-web`, privé.
-- [ ] Déployer sur le compte Vercel de l'entreprise (variables : voir `.env.example`).
+- [ ] Déployer sur le compte Vercel de l'entreprise (voir [Déploiement sur Vercel](#déploiement-sur-vercel)),
+      puis mettre l'adresse du site dans Supabase → Authentication → URL Configuration → Site URL.
 - [ ] Révoquer les accès temporaires : connecteur Supabase utilisé pendant le développement, et
       collaborateurs GitHub qui n'ont plus besoin d'accès (Settings → Collaborators).
