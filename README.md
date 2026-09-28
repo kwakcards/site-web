@@ -241,8 +241,9 @@ Gil, le propriétaire.
 
 - [ ] Gil crée son compte admin sur le projet dev (voir [Administration](#administration)).
 - [x] Migrations appliquées sur le projet de production (5 catégories, aucun article).
-- [ ] Créer le compte admin de Gil en production et désactiver les inscriptions publiques
-      (voir [Administration](#administration)).
+- [x] Compte admin de Gil créé en production (`kwak.cards@gmail.com`).
+- [ ] Désactiver les inscriptions publiques sur les deux projets Supabase (Authentication →
+      Sign In / Providers → « Allow new users to sign up »).
 - [ ] Supprimer les données de démonstration et le compte admin de démo du projet dev quand ils
       ne servent plus (`scripts/demo/demo-catalog.mts remove`, puis Authentication → Users).
 - [x] Dépôt poussé sur le GitHub de l'entreprise : `kwakcards/site-web`, privé.
