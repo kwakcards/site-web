@@ -4,6 +4,7 @@ import Link from "next/link"
 
 import { AdminNav } from "@/components/admin/admin-nav"
 import { Button } from "@/components/ui/button"
+import { Toaster } from "@/components/ui/sonner"
 import { brand } from "@/config/brand"
 import { requireAdmin } from "@/lib/auth"
 import { signOut } from "@/server/actions/auth"
@@ -47,6 +48,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
       <main id="contenu" className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 md:px-6">
         {children}
       </main>
+      <Toaster position="top-center" />
     </div>
   )
 }

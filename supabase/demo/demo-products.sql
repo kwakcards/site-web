@@ -98,12 +98,11 @@ with demo (
    false, null, null, 1790, 0, true, 15,
    'Trois boosters et une carte promo, sous blister.'),
 
-  -- Collector ------------------------------------------------------------------
-  ('demo-coffret-collection-ultra-premium-dracaufeu', 'collector', 'Coffret Collection Ultra-Premium Dracaufeu',
+  ('demo-coffret-collection-ultra-premium-dracaufeu', 'scelle', 'Coffret Collection Ultra-Premium Dracaufeu',
    'Pokémon', null, null, 'FR', null, null,
    false, null, null, 21900, 1, true, 11,
    'Coffret collector scellé : cartes promo en métal, boosters et accessoires exclusifs.'),
-  ('demo-piece-en-metal-kwak-and-cards', 'collector', 'Pièce en métal Kwak & Cards, édition limitée',
+  ('demo-piece-en-metal-kwak-and-cards', 'accessoires', 'Pièce en métal Kwak & Cards, édition limitée',
    null, null, null, null, null, null,
    false, null, null, 3990, 10, true, 1,
    'Pièce de jeu en métal gravée, numérotée à 100 exemplaires.'),

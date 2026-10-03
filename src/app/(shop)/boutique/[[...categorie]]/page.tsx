@@ -27,7 +27,7 @@ import {
 type Props = PageProps<"/boutique/[[...categorie]]">
 
 const CATALOG_DESCRIPTION =
-  "Cartes Pokémon, One Piece, Lorcana et plus : cartes à l'unité, gradées, produits scellés, collector et accessoires."
+  "Cartes Pokémon, One Piece, Lorcana et plus : cartes à l'unité, gradées, produits scellés et accessoires."
 
 /** Catégorie désignée par l'URL : null pour tout le catalogue, undefined si elle n'existe pas. */
 async function findCategory(

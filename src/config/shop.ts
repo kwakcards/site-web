@@ -9,7 +9,7 @@ const shipping = {
   /** Forfait de livraison suivie (centimes). */
   flatRateCents: 490,
   /** Livraison offerte à partir de ce montant d'achat (centimes), ou null. */
-  freeShippingThresholdCents: 10000 as number | null,
+  freeShippingThresholdCents: 25000 as number | null,
 }
 
 export const shopDefaults = {

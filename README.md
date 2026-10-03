@@ -1,7 +1,7 @@
 # Kwak & Cards
 
 Boutique en ligne de cartes à collectionner (TCG) : cartes à l'unité, cartes
-gradées, produits scellés, pièces collector et accessoires.
+gradées, produits scellés et accessoires, et rachat de collections.
 
 **Ce que fait la V1 aujourd'hui**
 

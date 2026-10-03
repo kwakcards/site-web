@@ -49,7 +49,8 @@ export default function HomePage() {
               href={null}
               eager
               className="h-auto w-full drop-shadow-[0_20px_60px_rgb(248_192_40/0.25)]"
-              sizes="448px"
+              // Masqué sous 768 px : le navigateur ne télécharge alors qu'une miniature.
+              sizes="(min-width: 768px) 448px, 1px"
             />
           </div>
         </div>

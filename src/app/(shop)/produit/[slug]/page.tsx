@@ -1,4 +1,4 @@
-import { PackageCheckIcon, RotateCcwIcon } from "lucide-react"
+import { PackageCheckIcon } from "lucide-react"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -147,14 +147,7 @@ async function ProductContent({ params }: Pick<Props, "params">) {
             </section>
           )}
 
-          <section aria-labelledby="specs-title">
-            <h2 id="specs-title" className="font-heading text-sm uppercase">
-              Caractéristiques
-            </h2>
-            <div className="mt-2">
-              <ProductSpecs product={product} />
-            </div>
-          </section>
+          <ProductSpecs product={product} />
 
           <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
             <li className="flex gap-3">
@@ -163,19 +156,6 @@ async function ProductContent({ params }: Pick<Props, "params">) {
                 Envoi suivi et protégé : {formatPrice(flatRateCents)}
                 {freeShippingThresholdCents != null &&
                   `, offert dès ${formatPrice(freeShippingThresholdCents, { compact: true })} d'achat`}
-                .
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <RotateCcwIcon aria-hidden="true" className="size-5 shrink-0 text-primary" />
-              <span>
-                14 jours pour changer d&apos;avis :{" "}
-                <Link
-                  href="/politique-de-remboursement"
-                  className="text-primary underline underline-offset-4"
-                >
-                  livraison, retours et remboursements
-                </Link>
                 .
               </span>
             </li>

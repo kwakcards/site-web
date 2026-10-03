@@ -6,9 +6,9 @@
 export const brand = {
   name: "Kwak & Cards",
   shortName: "Kwak",
-  tagline: "Cartes à collectionner : à l'unité, gradées, scellé et collector",
+  tagline: "Cartes à collectionner : à l'unité, gradées, scellé et accessoires",
   description:
-    "Boutique en ligne de cartes à collectionner (TCG) : cartes à l'unité, cartes gradées, produits scellés, pièces collector et accessoires.",
+    "Boutique en ligne de cartes à collectionner (TCG) : cartes à l'unité, cartes gradées, produits scellés et accessoires. Rachat de collections.",
   locale: "fr-FR",
   currency: "EUR",
   /** Couleur de la barre du navigateur mobile : reprend --brand-black (theme.css). */

@@ -71,6 +71,31 @@ const processings: Processing[] = [
     retention: <>5 ans à compter de la demande, à titre de preuve.</>,
   },
   {
+    title: "Rachat de collection (si vous nous proposez vos cartes)",
+    data: (
+      <>
+        Prénom et nom ; adresse email ; ville ; numéro de téléphone (facultatif) ; description de la
+        collection (types d&apos;articles, jeux, langues, volume, valeur espérée) ; liste des
+        cartes, photos et message (facultatifs) ; certification que les articles vous appartiennent.
+        Les photos sont conservées dans un espace privé, accessible au seul vendeur.
+      </>
+    ),
+    basis: (
+      <>
+        Mesures précontractuelles prises à votre demande : étudier votre collection et vous faire
+        une offre (article 6.1.b du RGPD).
+      </>
+    ),
+    retention: (
+      <>
+        Sans rachat : supprimées au plus tard 12 mois après notre dernier échange. En cas de rachat
+        : informations nécessaires aux obligations légales du vendeur (registre des achats
+        d&apos;objets d&apos;occasion, comptabilité) conservées pendant les durées prévues par la
+        loi.
+      </>
+    ),
+  },
+  {
     title: "Newsletter (uniquement si vous vous inscrivez)",
     data: <>Adresse email, date et origine de l&apos;inscription (preuve de votre consentement).</>,
     basis: (

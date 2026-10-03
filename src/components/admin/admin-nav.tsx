@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 const links = [
   { href: "/admin", label: "Tableau de bord", exact: true },
   { href: "/admin/produits", label: "Produits", exact: false },
+  { href: "/admin/rachats", label: "Rachats", exact: false },
 ]
 
 export function AdminNav() {

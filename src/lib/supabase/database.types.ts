@@ -11,6 +11,75 @@ export type Database = {
   }
   public: {
     Tables: {
+      buyback_requests: {
+        Row: {
+          admin_note: string | null
+          card_list: string | null
+          city: string
+          created_at: string
+          email: string
+          expected_value: string
+          first_name: string
+          games: string[]
+          id: string
+          item_types: string[]
+          languages: string[]
+          last_name: string
+          message: string | null
+          owner_certified: boolean
+          phone: string | null
+          status: string
+          summary: string
+          updated_at: string
+          upload_token: string
+          volume: string
+        }
+        Insert: {
+          admin_note?: string | null
+          card_list?: string | null
+          city: string
+          created_at?: string
+          email: string
+          expected_value: string
+          first_name: string
+          games?: string[]
+          id: string
+          item_types: string[]
+          languages: string[]
+          last_name: string
+          message?: string | null
+          owner_certified: boolean
+          phone?: string | null
+          status?: string
+          summary: string
+          updated_at?: string
+          upload_token: string
+          volume: string
+        }
+        Update: {
+          admin_note?: string | null
+          card_list?: string | null
+          city?: string
+          created_at?: string
+          email?: string
+          expected_value?: string
+          first_name?: string
+          games?: string[]
+          id?: string
+          item_types?: string[]
+          languages?: string[]
+          last_name?: string
+          message?: string | null
+          owner_certified?: boolean
+          phone?: string | null
+          status?: string
+          summary?: string
+          updated_at?: string
+          upload_token?: string
+          volume?: string
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string

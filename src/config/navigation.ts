@@ -1,20 +1,23 @@
 export type NavLink = {
   label: string
   href: string
+  /** Pictogramme du menu mobile pour les liens sans illustration de catégorie. */
+  icon?: "new" | "buyback"
+  /** Mis en avant (contour jaune) dans le header. */
+  highlight?: boolean
 }
 
 /**
- * Catégories affichées dans le header. En phase 3, cette liste sera construite
- * à partir des catégories visibles en base (éditables dans l'admin). Elle sert
- * de valeur par défaut d'ici là.
+ * Onglets du header : catalogue, catégories (mêmes slugs qu'en base) et rachat.
+ * Les catégories s'affichent avec leur illustration dans le menu mobile.
  */
 export const mainNav: NavLink[] = [
-  { label: "Nouveautés", href: "/boutique" },
+  { label: "Nouveautés", href: "/boutique", icon: "new" },
   { label: "Cartes à l'unité", href: "/boutique/cartes-a-l-unite" },
   { label: "Cartes gradées", href: "/boutique/cartes-gradees" },
   { label: "Scellé", href: "/boutique/scelle" },
-  { label: "Collector", href: "/boutique/collector" },
   { label: "Accessoires", href: "/boutique/accessoires" },
+  { label: "Rachat de collection", href: "/rachat", icon: "buyback", highlight: true },
 ]
 
 export const helpNav: NavLink[] = [

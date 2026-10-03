@@ -35,6 +35,22 @@ et dans la politique de confidentialité (`/confidentialite`).
 | Email                            | obligatoire | Envoi de la newsletter |
 | Date et origine de l'inscription | automatique | Preuve du consentement |
 
+### Rachat de collection (`/rachat`)
+
+| Champ                                     | Statut      | Justification                                                     |
+| ----------------------------------------- | ----------- | ----------------------------------------------------------------- |
+| Prénom et nom                             | obligatoire | Identifier le vendeur, préparer le registre des achats d'occasion |
+| Email                                     | obligatoire | Envoyer l'offre                                                   |
+| Ville                                     | obligatoire | Savoir si une remise en main propre est possible                  |
+| Téléphone                                 | facultatif  | Échange plus rapide si la personne le souhaite                    |
+| Types d'articles, langues, volume, valeur | obligatoire | Estimer la collection                                             |
+| Jeux                                      | facultatif  | Précision utile à l'estimation                                    |
+| Description courte                        | obligatoire | Estimer la collection                                             |
+| Liste, photos, message                    | facultatifs | Estimation plus précise ; photos allégées et sans métadonnées     |
+| Certification de propriété                | obligatoire | Ne pas racheter d'articles volés ; preuve pour le registre        |
+
+Conservation : 12 mois au plus après le dernier échange sans rachat (suppression depuis l'admin).
+
 ### Remboursement par virement
 
 | Champ | Statut                   | Justification                                                                             |

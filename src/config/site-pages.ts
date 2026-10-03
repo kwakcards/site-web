@@ -24,6 +24,11 @@ export const sitePages: SitePage[] = [
       "Tous les articles, avec recherche, filtres (jeu, langue, état, gradation) et tri.",
   },
   {
+    path: "/rachat",
+    title: "Rachat de collection",
+    description: "Vendre ses cartes : formulaire d'estimation gratuite, avec photos facultatives.",
+  },
+  {
     path: "/faq",
     title: "Questions fréquentes",
     description: "Commande, paiement, livraison, état des cartes et retours.",

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next"
 
 import { JsonLd } from "@/components/seo/json-ld"
-import { Toaster } from "@/components/ui/sonner"
 import { brand } from "@/config/brand"
 import { getSiteUrl } from "@/lib/env"
 import { storeStructuredData } from "@/lib/structured-data"
@@ -44,7 +43,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Aller au contenu
         </a>
         {children}
-        <Toaster position="top-center" />
         <JsonLd data={storeStructuredData()} />
       </body>
     </html>

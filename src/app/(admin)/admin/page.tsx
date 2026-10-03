@@ -1,4 +1,11 @@
-import { EyeOffIcon, PackageIcon, PackageXIcon, PlusIcon, TriangleAlertIcon } from "lucide-react"
+import {
+  EyeOffIcon,
+  HandCoinsIcon,
+  PackageIcon,
+  PackageXIcon,
+  PlusIcon,
+  TriangleAlertIcon,
+} from "lucide-react"
 import type { Metadata } from "next"
 import Link from "next/link"
 
@@ -6,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { brand } from "@/config/brand"
 import { requireAdmin } from "@/lib/auth"
 import { getAdminStats } from "@/server/queries/admin"
+import { countNewBuybackRequests } from "@/server/queries/buyback"
 
 // Même segment que le layout : son modèle de titre ne s'applique pas ici.
 export const metadata: Metadata = { title: { absolute: `Tableau de bord · Admin ${brand.name}` } }
@@ -15,9 +23,15 @@ export const instant = false
 
 export default async function AdminDashboardPage() {
   await requireAdmin()
-  const stats = await getAdminStats()
+  const [stats, newBuybacks] = await Promise.all([getAdminStats(), countNewBuybackRequests()])
 
   const cards = [
+    {
+      label: "Demandes de rachat à traiter",
+      value: newBuybacks,
+      icon: HandCoinsIcon,
+      href: "/admin/rachats",
+    },
     {
       label: "Produits en ligne",
       value: stats.visible,
@@ -54,7 +68,7 @@ export default async function AdminDashboardPage() {
         </Button>
       </div>
 
-      <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         {cards.map((card) => (
           <li key={card.label}>
             <Link

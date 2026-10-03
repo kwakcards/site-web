@@ -1,16 +1,26 @@
+"use client"
+
 import { LayoutDashboardIcon } from "lucide-react"
 import Link from "next/link"
+import { useSyncExternalStore } from "react"
 
 import { Button } from "@/components/ui/button"
-import { getAdmin } from "@/lib/auth"
+
+/** Cookie de session Supabase : sb-<projet>-auth-token, parfois découpé en .0, .1… */
+const SESSION_COOKIE = /(?:^|;\s*)sb-[^=]+-auth-token(?:\.\d+)?=/
+
+const subscribe = () => () => {}
+const hasSession = () => SESSION_COOKIE.test(document.cookie)
+const noSessionOnServer = () => false
 
 /**
- * Lien vers l'espace d'administration, affiché uniquement quand le compte
- * propriétaire est connecté. Lit la session : à placer dans un <Suspense>.
+ * Lien « Admin » affiché quand une session est ouverte dans ce navigateur. La
+ * détection se fait dans le navigateur : les pages publiques restent statiques et
+ * rapides. L'accès à /admin reste vérifié côté serveur.
  */
-export async function AdminLink() {
-  const admin = await getAdmin()
-  if (!admin) return null
+export function AdminLink() {
+  const visible = useSyncExternalStore(subscribe, hasSession, noSessionOnServer)
+  if (!visible) return null
 
   return (
     <Button asChild variant="cta-outline" size="sm" className="h-9">

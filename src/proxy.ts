@@ -6,9 +6,8 @@ export async function proxy(request: NextRequest) {
   return updateSession(request)
 }
 
+// Seules l'admin et la connexion utilisent la session : les pages publiques ne
+// passent pas par le proxy, ce qui les garde rapides.
 export const config = {
-  matcher: [
-    // Toutes les pages, sauf les fichiers statiques, les images et les fichiers pour robots.
-    "/((?!_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|opengraph-image|robots.txt|sitemap.xml|llms.txt|brand/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif)$).*)",
-  ],
+  matcher: ["/admin/:path*", "/connexion"],
 }

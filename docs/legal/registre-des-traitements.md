@@ -81,7 +81,23 @@ Modèle simplifié inspiré du [registre CNIL](https://www.cnil.fr/fr/RGPD-le-re
 - **Base légale** : obligation légale (6.1.c).
 - **Durée** : jusqu'à la réponse, puis 5 ans (preuve).
 
-## 7. Compte d'administration
+## 7. Rachat de collection (`/rachat`)
+
+- **Finalité** : étudier les collections proposées par des particuliers et leur faire une offre.
+- **Base légale** : mesures précontractuelles à la demande de la personne (6.1.b).
+- **Personnes concernées** : vendeurs particuliers.
+- **Données** :
+  - prénom, nom, email, ville ; téléphone (facultatif) ;
+  - description de la collection ; liste, photos et message (facultatifs) ;
+  - certification de propriété des articles.
+- **Destinataires** : le vendeur ; Supabase (hébergement des données et des photos, UE).
+- **Sécurité** : création seule pour le public (aucune relecture), photos dans un espace privé
+  (8 au plus, envoi limité à 1 heure), limite de 3 demandes par email et par jour.
+- **Durée** : sans rachat, 12 mois au plus après le dernier échange (suppression depuis
+  l'admin) ; en cas de rachat, données du registre des objets d'occasion et de la comptabilité
+  selon les durées légales.
+
+## 8. Compte d'administration
 
 - **Finalité** : accès sécurisé du vendeur à la gestion de la boutique.
 - **Base légale** : intérêt légitime (6.1.f).

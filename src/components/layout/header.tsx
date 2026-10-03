@@ -1,6 +1,5 @@
 import { SearchIcon } from "lucide-react"
 import Link from "next/link"
-import { Suspense } from "react"
 
 import { Logo } from "@/components/brand/logo"
 import { AdminLink } from "@/components/layout/admin-link"
@@ -8,6 +7,7 @@ import { MobileNav } from "@/components/layout/mobile-nav"
 import { NavLink } from "@/components/layout/nav-link"
 import { Button } from "@/components/ui/button"
 import { helpNav, mainNav } from "@/config/navigation"
+import { cn } from "@/lib/utils"
 
 export function Header() {
   return (
@@ -17,13 +17,18 @@ export function Header() {
 
         <Logo eager className="h-12 md:h-16" sizes="64px" />
 
-        <nav aria-label="Catégories" className="ml-6 hidden lg:block">
+        <nav aria-label="Navigation principale" className="ml-6 hidden xl:block">
           <ul className="flex items-center gap-2">
             {mainNav.map((link) => (
               <li key={link.href}>
                 <NavLink
                   href={link.href}
-                  className="inline-flex h-9 tactile items-center rounded-lg border-2 border-edge bg-secondary px-3 font-heading text-xs tracking-wide text-foreground uppercase outline-none [--ledge-depth:3px] hover:border-primary hover:text-primary hover:ledge-brand-deep focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/50"
+                  className={cn(
+                    "inline-flex h-9 tactile items-center rounded-lg border-2 px-3 font-heading text-xs tracking-wide uppercase outline-none [--ledge-depth:3px] hover:border-primary hover:text-primary hover:ledge-brand-deep focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/50",
+                    link.highlight
+                      ? "border-primary bg-background text-primary ledge-brand-deep"
+                      : "border-edge bg-secondary text-foreground"
+                  )}
                   activeClassName="border-primary bg-primary text-primary-foreground ledge-brand-deep hover:text-primary-foreground"
                 >
                   {link.label}
@@ -34,9 +39,7 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1">
-          <Suspense fallback={null}>
-            <AdminLink />
-          </Suspense>
+          <AdminLink />
           <Button asChild variant="outline" size="icon-lg">
             <Link href="/boutique#recherche" aria-label="Rechercher une carte">
               <SearchIcon className="size-5" />
