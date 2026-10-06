@@ -24,6 +24,7 @@ export default function ContactPage() {
         <p>
           Une question sur une carte, une commande ou une livraison ? Écrivez-nous en indiquant, le
           cas échéant, votre numéro de commande.
+          {seller.responseTime && <> Nous répondons {seller.responseTime}.</>}
         </p>
       }
       sections={[

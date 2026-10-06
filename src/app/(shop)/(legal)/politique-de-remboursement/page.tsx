@@ -46,10 +46,13 @@ export default function ShippingAndReturnsPage() {
                   : ""}
                 . Les frais exacts sont toujours indiqués avant la validation de la commande.
               </li>
+              <li>Transporteurs : {shipping.carriers.join(", ")}.</li>
               <li>
                 Expédition sous{" "}
                 <Fill value={shipping.dispatchBusinessDays} label="nombre de jours" /> jours ouvrés
-                après réception du paiement, dans un emballage protégé.
+                après réception du paiement, dans un emballage protégé, puis livraison en{" "}
+                <Fill value={shipping.deliveryBusinessDays} label="nombre de jours" /> jours ouvrés
+                au plus.
               </li>
               <li>
                 Les commandes non payées dans les {paymentDeadlineHours} heures sont annulées

@@ -19,6 +19,22 @@ Version détaillée et sourcée pour Gil : document « Kwak & Cards : check-list
 | 7   | Tenir à jour `docs/legal/registre-des-traitements.md`                                                                                                                                                                                                                      | RGPD art. 30 (traitements non occasionnels).                                                                                                                                 |
 | 8   | Confirmer les valeurs par défaut de `src/config/shop.ts` : forfait de livraison (4,90 €), seuil de livraison offerte (250 €), moyens de paiement, et le délai de paiement de 72 h (`legal.paymentDeadlineHours`)                                                           | Elles sont affichées (bandeau, CGV, FAQ, llms.txt) et engagent le vendeur : prix et frais doivent être exacts (C. conso L112-1, L111-1).                                     |
 
+**État au 6 octobre 2026** (formulaire de conformité rempli par Gil) :
+
+- 1 : fait, `src/config/legal.ts` complété (micro-entreprise, inscrite au RNE le 30/09/2026).
+- 2 : fait, médiateur CM2C (adhésion le 06/10/2026).
+- 3 : Gil prévoit de racheter des collections et de tenir le registre ; la déclaration en
+  préfecture reste à faire avant le premier rachat.
+- 4 : DPA acceptés chez Vercel et Supabase. Resend est indiqué « fait » alors que le compte
+  n'existe pas encore : à vérifier.
+- 5 : franchise en base de TVA.
+- 6 : à confirmer (passage de Vercel en Pro).
+- 8 : confirmé : 4,90 €, livraison offerte dès 250 €, virement bancaire uniquement, 72 h.
+  Expédition sous 3 jours ouvrés, acheminement en 7 jours ouvrés au plus.
+- Retours : Gil a répondu « pas de retour », ce que la loi interdit pour une vente à distance
+  à un particulier (C. conso L221-18). Le droit de rétractation de 14 jours reste donc en
+  place, frais de retour à la charge du client.
+
 ## 2. Déjà en place dans le code
 
 | Obligation                                                                                                                               | Texte                                                                                                           | Où                                          |

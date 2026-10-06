@@ -22,4 +22,6 @@ export const brand = {
   },
   /** Logo sur fond noir opaque, pour les emails et les supports clairs. */
   logoOnBlack: "/brand/logo-on-black.png",
+  /** Comptes de la boutique, en liens simples dans le pied de page (aucun contenu intégré). */
+  social: [{ name: "Whatnot", url: "https://www.whatnot.com/user/passikwak" }],
 } as const

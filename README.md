@@ -13,8 +13,8 @@ gradées, produits scellés et accessoires, et rachat de collections.
   (compressées dans le navigateur puis envoyées sur Supabase Storage).
 - Pages légales, accessibilité WCAG 2.2 AA, données structurées et `/llms.txt`.
 
-**Pas encore disponible** : la commande en ligne (panier, commande avec paiement hors ligne :
-virement, PayPal, Wero…), les emails, puis le paiement par carte (Stripe). En attendant, chaque
+**Pas encore disponible** : la commande en ligne (panier, commande avec paiement hors ligne par
+virement), les emails, puis le paiement par carte (Stripe). En attendant, chaque
 fiche produit invite à contacter la boutique (interrupteur `onlineOrdering` dans
 `src/config/shop.ts`).
 

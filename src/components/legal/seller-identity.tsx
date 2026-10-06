@@ -22,11 +22,10 @@ export function SellerEmail() {
 
 export function SellerPhone() {
   const { phone } = legal.seller
-  return phone ? (
-    <a href={`tel:${phone.replace(/\s/g, "")}`}>{phone}</a>
-  ) : (
-    <Fill value={null} label="téléphone" />
-  )
+  if (!phone) return <Fill value={null} label="téléphone" />
+  // Numéro français (« 07 69… ») composé au format international : +33 7 69…
+  const href = phone.replace(/\s/g, "").replace(/^0(?=\d{9}$)/, "+33")
+  return <a href={`tel:${href}`}>{phone}</a>
 }
 
 /** Identité complète du vendeur (mentions légales, CGV, contact). */
@@ -89,6 +88,12 @@ export function MediatorDetails() {
           <Fill value={null} label="site du médiateur" />
         )}
       </li>
+      {mediator.complaintUrl && (
+        <li>
+          Saisir le médiateur en ligne :{" "}
+          <a href={mediator.complaintUrl}>formulaire « Déclarer un litige »</a>
+        </li>
+      )}
       <li>
         Adresse postale : <Fill value={mediator.address} label="adresse du médiateur" />
       </li>

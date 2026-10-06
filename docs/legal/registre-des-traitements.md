@@ -3,14 +3,18 @@
 Registre tenu par le responsable du traitement, à mettre à jour à chaque nouveau traitement.
 Modèle simplifié inspiré du [registre CNIL](https://www.cnil.fr/fr/RGPD-le-registre-des-activites-de-traitement).
 
-**Responsable du traitement** : [À COMPLÉTER : nom ou dénomination sociale], Kwak & Cards,
-[adresse], [email]. Pas de délégué à la protection des données (non obligatoire).
+**Responsable du traitement** : Gil DA SILVA EI (Kwak & Cards), 19 rue Jean-Baptiste Clément,
+78500 Sartrouville, kwak.cards@gmail.com. Pas de délégué à la protection des données (non obligatoire).
 
 **Sous-traitants communs** (accord de traitement des données à accepter depuis les comptes de l'entreprise) :
 
 - Vercel Inc. : hébergement du site (États-Unis ; DPF + clauses contractuelles types) ;
 - Supabase Pte. Ltd. : base de données, stockage, authentification (données hébergées dans l'UE, à Stockholm) ;
 - Plus Five Five, Inc. « Resend » : emails (États-Unis ; DPF + clauses contractuelles types).
+
+**Messagerie** : Gmail (Google), pour les échanges par email avec les clients et les vendeurs
+(UE et États-Unis ; DPF). Un compte Gmail gratuit n'offre pas d'accord de traitement des
+données ; un compte Google Workspace en propose un.
 
 **Mesures de sécurité communes** :
 
@@ -25,7 +29,7 @@ Modèle simplifié inspiré du [registre CNIL](https://www.cnil.fr/fr/RGPD-le-re
 
 ## 1. Gestion des commandes et de la relation client
 
-- **Finalité** : prise de commande, paiement hors ligne, préparation, livraison ou remise en main propre, service client.
+- **Finalité** : prise de commande, paiement hors ligne, préparation, livraison, service client.
 - **Base légale** : exécution du contrat (6.1.b).
 - **Personnes concernées** : clients.
 - **Données** :

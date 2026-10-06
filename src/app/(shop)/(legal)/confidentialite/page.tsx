@@ -252,7 +252,12 @@ export default function PrivacyPolicyPage() {
                   hébergées dans l&apos;Union européenne (Stockholm, Suède) ;
                 </li>
                 <li>
-                  <strong>Plus Five Five, Inc.</strong> (« Resend », États-Unis) : envoi des emails.
+                  <strong>Plus Five Five, Inc.</strong> (« Resend », États-Unis) : envoi des emails
+                  ;
+                </li>
+                <li>
+                  <strong>Google</strong> (« Gmail ») : messagerie de la boutique, pour les échanges
+                  par email.
                 </li>
               </ul>
               <p>Certaines données sont aussi transmises, pour leur propre compte, à :</p>
@@ -275,10 +280,10 @@ export default function PrivacyPolicyPage() {
           title: "Transferts hors de l'Union européenne",
           content: (
             <p>
-              Vercel et Resend sont établis aux États-Unis. Ces transferts sont encadrés par le
-              cadre de protection des données UE–États-Unis (Data Privacy Framework), auquel ces
-              prestataires déclarent adhérer, et par les clauses contractuelles types de la
-              Commission européenne prévues dans leurs accords de traitement des données. Les
+              Vercel et Resend sont établis aux États-Unis, et Google peut y traiter les emails. Ces
+              transferts sont encadrés par le cadre de protection des données UE–États-Unis (Data
+              Privacy Framework), auquel ces prestataires déclarent adhérer, et par les clauses
+              contractuelles types de la Commission européenne prévues dans leurs accords. Les
               données stockées par Supabase restent dans l&apos;Union européenne ; tout accès depuis
               un pays tiers est encadré par des clauses contractuelles types.
             </p>

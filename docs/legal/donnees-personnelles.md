@@ -81,3 +81,4 @@ Conservation : 12 mois au plus après le dernier échange sans rachat (suppressi
 | Base de données (commandes, rétractations, newsletter), images, authentification admin | Supabase (compte de l'entreprise) | UE, Stockholm (Suède)                          |
 | Site et journaux techniques                                                            | Vercel (compte de l'entreprise)   | États-Unis, DPF + clauses contractuelles types |
 | Emails transactionnels                                                                 | Resend (compte de l'entreprise)   | États-Unis, DPF + clauses contractuelles types |
+| Emails échangés avec la boutique                                                       | Gmail (compte de l'entreprise)    | UE et États-Unis, DPF                          |

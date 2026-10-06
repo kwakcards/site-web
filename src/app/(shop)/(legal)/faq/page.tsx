@@ -27,7 +27,6 @@ type Faq = {
 function buildFaq(): Faq[] {
   const { shipping, paymentDeadlineHours } = legal
   const { flatRateCents, freeShippingThresholdCents } = shopDefaults.shipping
-  const methods = shopDefaults.offlinePaymentMethods.join(", ")
 
   return [
     {
@@ -37,12 +36,16 @@ function buildFaq(): Faq[] {
     },
     {
       question: "Comment payer ma commande ?",
-      answer: `Pour l'instant, le paiement se fait hors ligne, selon les moyens proposés lors de la commande (${methods}). Vos articles vous sont réservés pendant ${paymentDeadlineHours} heures ; sans paiement dans ce délai, la commande est annulée automatiquement, sans frais.`,
+      answer: `Pour l'instant, le paiement se fait hors ligne, par ${shopDefaults.offlinePaymentText}. Vos articles vous sont réservés pendant ${paymentDeadlineHours} heures ; sans paiement dans ce délai, la commande est annulée automatiquement, sans frais.`,
     },
     {
       question: "Quand ma commande est-elle expédiée ?",
       answer: shipping.dispatchBusinessDays
-        ? `Sous ${shipping.dispatchBusinessDays} jours ouvrés après réception du paiement, dans un emballage protégé, avec un numéro de suivi.`
+        ? `Sous ${shipping.dispatchBusinessDays} jours ouvrés après réception du paiement, dans un emballage protégé, avec un numéro de suivi (${shipping.carriers.join(", ")}).${
+            shipping.deliveryBusinessDays
+              ? ` Le transporteur la livre ensuite en ${shipping.deliveryBusinessDays} jours ouvrés au plus.`
+              : ""
+          }`
         : "Après réception du paiement, dans un emballage protégé, avec un numéro de suivi. Le délai est précisé lors de la commande.",
     },
     {

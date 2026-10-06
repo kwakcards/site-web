@@ -1,5 +1,6 @@
 /**
- * Informations légales de la boutique : À COMPLÉTER PAR GIL (PROPRIÉTAIRE) AVANT L'OUVERTURE.
+ * Informations légales de la boutique, fournies par Gil (propriétaire) : à tenir à jour
+ * à chaque changement (adresse, téléphone, régime de TVA, médiateur…).
  *
  * Toutes les pages légales (mentions légales, CGV, confidentialité…) lisent ce
  * fichier. Une valeur `null` est affichée « [À compléter] » et listée dans
@@ -29,6 +30,8 @@ export type LegalConfig = {
     vatNumber: string | null
     email: string | null
     phone: string | null
+    /** Délai de réponse annoncé sur la page Contact, ex. « sous 48 h ouvrées ». */
+    responseTime: string | null
     /** Personne physique responsable de la publication du site. */
     publicationDirector: string | null
   }
@@ -47,32 +50,40 @@ export type LegalConfig = {
   mediator: {
     name: string | null
     website: string | null
+    /** Page du médiateur pour déclarer un litige en ligne. */
+    complaintUrl: string | null
     address: string | null
   }
   shipping: {
     /** Zone desservie. */
     area: string
+    /** Transporteurs utilisés pour les envois suivis. */
+    carriers: string[]
     /** Délai d'expédition après réception du paiement (jours ouvrés). */
     dispatchBusinessDays: number | null
+    /** Délai d'acheminement maximal par le transporteur, après l'expédition (jours ouvrés). */
+    deliveryBusinessDays: number | null
   }
   /** Délai laissé pour payer une commande hors ligne avant son annulation (heures). */
   paymentDeadlineHours: number
 }
 
 export const legal: LegalConfig = {
-  updatedAt: "2026-09-25",
+  updatedAt: "2026-10-06",
+  // Réponses de Gil au formulaire de conformité (6 octobre 2026).
   seller: {
     tradeName: "Kwak & Cards",
-    legalName: null,
-    legalForm: null,
-    address: null,
-    siret: null,
-    registration: null,
-    vatExempt: null,
+    legalName: "Gil DA SILVA EI",
+    legalForm: "Entrepreneur individuel (micro-entreprise)",
+    address: "19 rue Jean-Baptiste Clément, 78500 Sartrouville",
+    siret: "105 549 893 00029",
+    registration: "Inscrit au RNE",
+    vatExempt: true,
     vatNumber: null,
-    email: null,
-    phone: null,
-    publicationDirector: null,
+    email: "kwak.cards@gmail.com",
+    phone: "07 69 74 95 41",
+    responseTime: "sous 48 h ouvrées",
+    publicationDirector: "Gil DA SILVA",
   },
   host: {
     name: "Vercel Inc.",
@@ -80,14 +91,18 @@ export const legal: LegalConfig = {
     phone: "+1 559 288 7060",
     website: "https://vercel.com",
   },
+  // Adhésion le 6 octobre 2026 ; coordonnées relevées sur cm2c.net (page Contact).
   mediator: {
-    name: null,
-    website: null,
-    address: null,
+    name: "CM2C (Centre de la médiation de la consommation de conciliateurs de justice)",
+    website: "https://www.cm2c.net",
+    complaintUrl: "https://www.cm2c.net/declarer-un-litige.php",
+    address: "49 rue de Ponthieu, 75008 Paris",
   },
   shipping: {
     area: "France métropolitaine",
-    dispatchBusinessDays: null,
+    carriers: ["Mondial Relay", "La Poste", "Colissimo", "DHL"],
+    dispatchBusinessDays: 3,
+    deliveryBusinessDays: 7,
   },
   paymentDeadlineHours: 72,
 }

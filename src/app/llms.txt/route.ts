@@ -26,7 +26,7 @@ function buildLlmsTxt(categories: CatalogCategory[]): string {
     .join("\n")
   const ordering = shopDefaults.onlineOrdering
     ? `- Commande sans compte client : panier, coordonnées, choix de la livraison et du paiement, puis validation explicite avec le bouton « Commander avec obligation de paiement ».
-- Paiement hors ligne pour l'instant (${shopDefaults.offlinePaymentMethods.join(", ")}). Les articles sont réservés ${legal.paymentDeadlineHours} heures ; sans paiement, la commande est annulée automatiquement.`
+- Paiement hors ligne pour l'instant, par ${shopDefaults.offlinePaymentText}. Les articles sont réservés ${legal.paymentDeadlineHours} heures ; sans paiement, la commande est annulée automatiquement.`
     : `- La commande en ligne ouvrira prochainement. En attendant, contactez la boutique pour tout article qui vous intéresse : ${link("/contact")}.`
 
   return `# ${brand.name}

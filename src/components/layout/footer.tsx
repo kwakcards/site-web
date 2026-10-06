@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from "lucide-react"
 import { cacheLife } from "next/cache"
 import Link from "next/link"
 
@@ -40,6 +41,20 @@ export function Footer() {
         <div className="flex flex-col items-start gap-4">
           <Logo className="h-20" sizes="80px" />
           <p className="max-w-xs text-sm text-muted-foreground">{brand.tagline}</p>
+          {brand.social.length > 0 && (
+            <ul aria-label="Réseaux de la boutique" className="flex flex-wrap gap-2">
+              {brand.social.map((network) => (
+                <li key={network.url}>
+                  <Button asChild variant="outline" size="sm">
+                    <a href={network.url} aria-label={`${brand.name} sur ${network.name}`}>
+                      {network.name}
+                      <ExternalLinkIcon data-icon="inline-end" />
+                    </a>
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <FooterColumn title="Boutique" links={mainNav} />
         <FooterColumn title="Aide" links={helpNav} />
@@ -48,9 +63,15 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6">
-          <p className="flex items-center gap-2">
-            <Splash className="size-4" />© <CurrentYear /> {brand.name}. Tous droits réservés.
-          </p>
+          <div className="flex flex-col gap-1.5">
+            <p className="flex items-center gap-2">
+              <Splash className="size-4" />© <CurrentYear /> {brand.name}. Tous droits réservés.
+            </p>
+            <p>
+              Boutique indépendante : Pokémon, One Piece, Disney Lorcana et les autres jeux cités
+              sont des marques de leurs propriétaires respectifs.
+            </p>
+          </div>
           <Button asChild variant="cta-outline" size="sm" className="self-start md:self-auto">
             <Link href={withdrawalLink.href}>{withdrawalLink.label}</Link>
           </Button>

@@ -24,6 +24,7 @@ export function storeStructuredData() {
         ...(seller.email ? { email: seller.email } : {}),
         ...(seller.phone ? { telephone: seller.phone } : {}),
         ...(seller.legalName ? { legalName: seller.legalName } : {}),
+        ...(brand.social.length > 0 ? { sameAs: brand.social.map((network) => network.url) } : {}),
         hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",
           applicableCountry: "FR",

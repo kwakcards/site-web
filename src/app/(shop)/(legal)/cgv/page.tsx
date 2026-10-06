@@ -25,6 +25,10 @@ export const metadata: Metadata = {
 
 export default function TermsOfSalePage() {
   const { seller, shipping, paymentDeadlineHours } = legal
+  const maxDeliveryDays =
+    shipping.dispatchBusinessDays != null && shipping.deliveryBusinessDays != null
+      ? shipping.dispatchBusinessDays + shipping.deliveryBusinessDays
+      : null
 
   return (
     <LegalPage
@@ -179,8 +183,7 @@ export default function TermsOfSalePage() {
           content: (
             <>
               <p>
-                Le paiement s&apos;effectue hors ligne, selon l&apos;un des moyens proposés lors de
-                la commande (par exemple {shopDefaults.offlinePaymentMethods.join(", ")}). Les
+                Le paiement s&apos;effectue hors ligne, par {shopDefaults.offlinePaymentText}. Les
                 instructions de paiement figurent sur la page de confirmation et dans l&apos;email
                 de confirmation ; le numéro de commande sert de référence. Aucune donnée de carte
                 bancaire n&apos;est collectée par le Site.
@@ -205,17 +208,23 @@ export default function TermsOfSalePage() {
           content: (
             <>
               <p>
-                Les produits sont livrés en {shipping.area}, par envoi postal avec suivi, ou remis
-                en main propre lorsque cette option est proposée lors de la commande (les modalités
-                sont alors précisées au Client).
+                Les produits sont livrés en {shipping.area}, par envoi suivi, avec l&apos;un des
+                transporteurs suivants : {shipping.carriers.join(", ")}.
               </p>
               <p>
                 Les commandes sont expédiées dans un délai de{" "}
                 <Fill value={shipping.dispatchBusinessDays} label="nombre de jours" /> jours ouvrés
-                après réception du paiement. Le délai d&apos;acheminement indicatif est communiqué
-                lors de la commande. À défaut d&apos;indication ou d&apos;accord quant à la date de
-                livraison, le vendeur livre le bien sans retard injustifié et au plus tard trente
-                jours après la conclusion du contrat (article L. 216-1 du code de la consommation).
+                après réception du paiement, puis acheminées par le transporteur en{" "}
+                <Fill value={shipping.deliveryBusinessDays} label="nombre de jours" /> jours ouvrés
+                au plus
+                {maxDeliveryDays != null && (
+                  <>
+                    {" "}
+                    : la livraison intervient au plus tard {maxDeliveryDays} jours ouvrés après
+                    réception du paiement
+                  </>
+                )}
+                .
               </p>
               <p>
                 En cas de manquement du vendeur à son obligation de livraison, le Client peut
@@ -278,9 +287,7 @@ export default function TermsOfSalePage() {
                 Le Client renvoie les produits à l&apos;adresse du vendeur figurant à l&apos;article
                 2, sans retard excessif et au plus tard dans les quatorze jours suivant la
                 communication de sa décision. Les frais directs de renvoi sont à la charge du
-                Client. Un envoi suivi et protégé est recommandé, les cartes étant fragiles. En cas
-                de remise en main propre, le retour peut aussi se faire en main propre, par accord
-                entre les parties.
+                Client. Un envoi suivi et protégé est recommandé, les cartes étant fragiles.
               </p>
               <p>
                 La responsabilité du Client n&apos;est engagée qu&apos;en cas de dépréciation des
