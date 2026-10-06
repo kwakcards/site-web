@@ -134,6 +134,22 @@ const processings: Processing[] = [
     ),
   },
   {
+    title: "Mesure des performances du site",
+    data: (
+      <>
+        Pour chaque page affichée : son adresse (sans paramètres), ses temps de chargement et
+        d&apos;affichage, le type d&apos;appareil, le navigateur, le système, le pays et le débit
+        réseau. Ces mesures ne sont associées ni à votre adresse IP, ni à un identifiant : elles ne
+        permettent pas de suivre votre navigation. Rien n&apos;est mesuré dans l&apos;espace
+        d&apos;administration.
+      </>
+    ),
+    basis: (
+      <>Intérêt légitime (article 6.1.f du RGPD) : garder un site rapide, notamment sur mobile.</>
+    ),
+    retention: <>Statistiques anonymes, portant sur les 30 derniers jours au plus.</>,
+  },
+  {
     title: "Échanges par email ou téléphone",
     data: <>Les informations que vous nous communiquez.</>,
     basis: <>Intérêt légitime : répondre à vos questions (article 6.1.f du RGPD).</>,
@@ -199,8 +215,8 @@ export default function PrivacyPolicyPage() {
                 </li>
                 <li>aucune donnée de carte bancaire ;</li>
                 <li>
-                  aucun outil de mesure d&apos;audience, de publicité ou de réseau social, et aucun
-                  profilage ;
+                  aucun outil de publicité ou de réseau social, aucune statistique de visite et
+                  aucun profilage : seule la vitesse des pages est mesurée, anonymement ;
                 </li>
                 <li>vos données ne sont jamais vendues ni louées.</li>
               </ul>
@@ -244,7 +260,8 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul>
                 <li>
-                  <strong>Vercel Inc.</strong> (États-Unis) : hébergement du site ;
+                  <strong>Vercel Inc.</strong> (États-Unis) : hébergement du site et mesure anonyme
+                  de ses performances ;
                 </li>
                 <li>
                   <strong>Supabase Pte. Ltd.</strong> : base de données, authentification de

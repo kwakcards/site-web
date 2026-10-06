@@ -107,3 +107,12 @@ données ; un compte Google Workspace en propose un.
 - **Base légale** : intérêt légitime (6.1.f).
 - **Données** : email, mot de passe haché, journaux de connexion.
 - **Durée** : durée d'existence du compte.
+
+## 9. Mesure des performances du site (Vercel Speed Insights)
+
+- **Finalité** : mesurer la vitesse de chargement et d'affichage des pages (Web Vitals) pour améliorer le site.
+- **Base légale** : intérêt légitime (6.1.f) ; traceur dispensé de consentement (conditions CNIL des outils de mesure d'audience : statistiques anonymes réservées à l'éditeur, pas de suivi de la navigation ni de recoupement).
+- **Personnes concernées** : visiteurs du site (pas l'espace d'administration ni la connexion, exclus par `src/lib/performance-events.ts`).
+- **Données** : adresse de la page sans paramètres, mesures de performance, type d'appareil, navigateur, système, pays, débit réseau ; ni cookie, ni identifiant, ni adresse IP associée aux mesures.
+- **Destinataires** : le vendeur ; Vercel (sous-traitant, États-Unis ; DPF + clauses contractuelles types).
+- **Durée** : statistiques anonymes consultées sur 30 jours au plus.

@@ -7,7 +7,7 @@ import { storageKeys } from "@/config/storage"
 export const metadata: Metadata = {
   title: "Politique cookies",
   description:
-    "Traceurs utilisés par Kwak & Cards : uniquement des traceurs strictement nécessaires, sans mesure d'audience ni publicité.",
+    "Traceurs utilisés par Kwak & Cards : traceurs strictement nécessaires et mesure anonyme de la vitesse des pages, sans publicité ni suivi.",
   alternates: { canonical: "/cookies" },
 }
 
@@ -16,6 +16,8 @@ type Tracker = {
   kind: string
   purpose: string
   duration: string
+  /** Motif de dispense de consentement, si ce n'est pas un traceur strictement nécessaire. */
+  exemption?: string
   note?: string
 }
 
@@ -42,6 +44,16 @@ const trackers: Tracker[] = [
       "Mémoriser la réussite d'une vérification anti-robot, uniquement si une telle vérification est déclenchée pour protéger le site.",
     duration: "Courte durée, fixée par l'hébergeur.",
   },
+  {
+    name: "Vercel Speed Insights",
+    kind: "Script de mesure de Vercel, hébergeur du site, sans cookie ni stockage sur votre appareil",
+    purpose:
+      "Mesurer anonymement la vitesse de chargement et d'affichage des pages, pour améliorer le site. Les mesures ne sont associées ni à votre adresse IP, ni à un identifiant ; rien n'est mesuré dans l'espace d'administration.",
+    duration:
+      "Rien n'est enregistré sur votre appareil ; les statistiques anonymes portent sur 30 jours au plus.",
+    exemption:
+      "Non requis : mesure de performance anonyme, dispensée de consentement (voir plus bas).",
+  },
 ]
 
 export default function CookiePolicyPage() {
@@ -50,9 +62,10 @@ export default function CookiePolicyPage() {
       title="Politique cookies"
       intro={
         <p>
-          Ce site n&apos;utilise que des traceurs strictement nécessaires à son fonctionnement :
-          aucune mesure d&apos;audience, aucune publicité, aucun réseau social. C&apos;est pourquoi
-          aucun bandeau de consentement ne s&apos;affiche.
+          Ce site n&apos;utilise que des traceurs strictement nécessaires à son fonctionnement et
+          une mesure anonyme de la vitesse de ses pages : aucune publicité, aucun réseau social,
+          aucun suivi de votre navigation. C&apos;est pourquoi aucun bandeau de consentement ne
+          s&apos;affiche.
         </p>
       }
       sections={[
@@ -85,7 +98,7 @@ export default function CookiePolicyPage() {
                     <dt>Durée</dt>
                     <dd>{tracker.duration}</dd>
                     <dt>Consentement</dt>
-                    <dd>Non requis : traceur strictement nécessaire.</dd>
+                    <dd>{tracker.exemption ?? "Non requis : traceur strictement nécessaire."}</dd>
                   </dl>
                   {tracker.note && <p>{tracker.note}</p>}
                 </div>
@@ -107,11 +120,27 @@ export default function CookiePolicyPage() {
           ),
         },
         {
+          id: "mesure-performance",
+          title: "La mesure de la vitesse des pages",
+          content: (
+            <p>
+              Elle est aussi dispensée de consentement, car elle remplit les conditions fixées par
+              la CNIL pour les outils de mesure d&apos;audience : elle sert uniquement à mesurer les
+              performances du site, produit des statistiques anonymes réservées à l&apos;éditeur, ne
+              suit pas votre navigation et n&apos;est recoupée avec aucune autre donnée. Les
+              adresses des pages sont transmises sans leurs paramètres (recherche, filtres).
+            </p>
+          ),
+        },
+        {
           id: "non-utilises",
           title: "Ce que nous n'utilisons pas",
           content: (
             <ul>
-              <li>aucun outil de mesure d&apos;audience ni de statistiques de visite ;</li>
+              <li>
+                aucune statistique de visite (nombre de visiteurs, parcours d&apos;une page à
+                l&apos;autre) : seule la vitesse des pages est mesurée ;
+              </li>
               <li>aucun traceur publicitaire ni de reciblage ;</li>
               <li>aucun bouton de partage ni contenu intégré de réseau social ou de vidéo ;</li>
               <li>

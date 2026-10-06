@@ -29,7 +29,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Informations légales centralisées dans `src/config/legal.ts` : ne jamais les écrire en dur ailleurs.
 - Aucun traceur non indispensable (mesure d'audience, pixel, contenu intégré, police chargée depuis
   un CDN) sans bannière de consentement conforme CNIL ; toute clé de stockage va dans
-  `src/config/storage.ts` et dans la page `/cookies`.
+  `src/config/storage.ts` et dans la page `/cookies`. Seule exception : Vercel Speed Insights,
+  mesure de performance anonyme sans cookie ni identifiant, dispensée de consentement (conditions
+  CNIL de la mesure d'audience) ; pages privées et paramètres d'URL filtrés dans
+  `src/lib/performance-events.ts`. Ne pas y ajouter Vercel Web Analytics ni un autre outil sans
+  revoir cette analyse.
 - Toute nouvelle donnée personnelle : justifier sa nécessité, puis mettre à jour l'inventaire, le
   registre et `/confidentialite`. Pas de civilité ni de date de naissance ; le téléphone reste facultatif.
 - Libellés légaux exacts : « Commander avec obligation de paiement » (L221-14), « Renoncer au

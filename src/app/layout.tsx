@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 
+import { SpeedInsights } from "@/components/analytics/speed-insights"
 import { JsonLd } from "@/components/seo/json-ld"
 import { brand } from "@/config/brand"
 import { getSiteUrl } from "@/lib/env"
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         {children}
         <JsonLd data={storeStructuredData()} />
+        <SpeedInsights />
       </body>
     </html>
   )
