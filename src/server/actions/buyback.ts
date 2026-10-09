@@ -2,8 +2,12 @@
 
 import { randomUUID } from "node:crypto"
 
+import { after } from "next/server"
 import { z } from "zod"
 
+import { buybackSellerAcknowledgement, buybackShopNotification } from "@/emails/buyback"
+import { sendEmail, shopEmail } from "@/lib/email"
+import { getSiteUrl } from "@/lib/env"
 import { createPublicClient } from "@/lib/supabase/public"
 import {
   type BuybackFieldErrors,
@@ -75,6 +79,18 @@ export async function submitBuybackRequest(input: unknown): Promise<BuybackState
     console.error("[rachat] enregistrement de la demande", error)
     return { status: "error", message: "L'envoi a échoué. Réessaie dans un instant." }
   }
+
+  // Emails envoyés après la réponse, pour ne pas ralentir le formulaire.
+  after(async () => {
+    const shop = shopEmail()
+    const siteUrl = getSiteUrl()
+    const notification = buybackShopNotification(data, `${siteUrl}/admin/rachats/${requestId}`)
+    const acknowledgement = buybackSellerAcknowledgement(data, siteUrl)
+    await Promise.all([
+      shop ? sendEmail({ to: shop, replyTo: data.email, ...notification }) : null,
+      sendEmail({ to: data.email, ...(shop ? { replyTo: shop } : {}), ...acknowledgement }),
+    ])
+  })
 
   return { status: "sent", requestId, uploadToken }
 }

@@ -94,7 +94,8 @@ données ; un compte Google Workspace en propose un.
   - prénom, nom, email, ville ; téléphone (facultatif) ;
   - description de la collection ; liste, photos et message (facultatifs) ;
   - certification de propriété des articles.
-- **Destinataires** : le vendeur ; Supabase (hébergement des données et des photos, UE).
+- **Destinataires** : le vendeur ; Supabase (hébergement des données et des photos, UE) ; Resend
+  (alerte au vendeur et accusé de réception, États-Unis ; DPF).
 - **Sécurité** : création seule pour le public (aucune relecture), photos dans un espace privé
   (8 au plus, envoi limité à 1 heure), limite de 3 demandes par email et par jour.
 - **Durée** : sans rachat, 12 mois au plus après le dernier échange (suppression depuis
