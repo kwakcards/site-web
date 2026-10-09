@@ -20,8 +20,12 @@ export const brand = {
     height: 973,
     alt: "Kwak & Cards",
   },
-  /** Logo sur fond noir opaque, pour les emails et les supports clairs. */
+  /** Logo sur fond noir opaque, pour les supports clairs. */
   logoOnBlack: "/brand/logo-on-black.png",
+  /** Logo des emails : PNG léger (240 × 240), affiché en 120 px. */
+  emailLogo: "/brand/email-logo.png",
+  /** Adresse publique du site : images des emails envoyés depuis un poste de développement. */
+  publicUrl: "https://www.kwak-and-cards.fr",
   /** Comptes de la boutique, en liens simples dans le pied de page (aucun contenu intégré). */
   social: [{ name: "Whatnot", url: "https://www.whatnot.com/user/passikwak" }],
 } as const

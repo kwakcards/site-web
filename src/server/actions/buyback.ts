@@ -84,7 +84,7 @@ export async function submitBuybackRequest(input: unknown): Promise<BuybackState
   after(async () => {
     const shop = shopEmail()
     const siteUrl = getSiteUrl()
-    const notification = buybackShopNotification(data, `${siteUrl}/admin/rachats/${requestId}`)
+    const notification = buybackShopNotification(data, siteUrl, requestId)
     const acknowledgement = buybackSellerAcknowledgement(data, siteUrl)
     await Promise.all([
       shop ? sendEmail({ to: shop, replyTo: data.email, ...notification }) : null,
